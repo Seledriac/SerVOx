@@ -6,11 +6,17 @@ public class Bouclier extends Arme {
 
     private int defense;
 
-    public Bouclier(String nom,int damages,int defense) throws CreationException {
-        super(nom,damages);
-        if (defense>0) {
-            this.defense = defense;
-        }else throw new CreationException();
+    public Bouclier(String nom, int damages, int defense) throws CreationException {
+        super(nom, damages);
+        try {
+            if(defense > 0) {
+                this.damages = 0;
+                this.defense = defense;
+            } else
+                throw new CreationException();
+        } catch(CreationException e) {
+            e.printStackTrace();
+        }
     }
 
     public int getDefense() {
