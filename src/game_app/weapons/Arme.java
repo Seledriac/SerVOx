@@ -3,14 +3,23 @@ package game_app.weapons;
 import game_app.Exceptions.CreationException;
 
 public abstract class Arme {
+    protected int id;
     protected String nom;
     protected int damages;
+    private static int count = 0;
 
-    public Arme(String nom,int damages) throws CreationException {
-        if (damages>=0) {
-            this.nom = nom;
-            this.damages = damages;
-        }else throw new CreationException();
+    public Arme(String nom, int damages) throws CreationException {
+        try {
+            if (damages >= 0) {
+                count++;
+                id = count;
+                this.nom = nom;
+                this.damages = damages;
+            } else
+                throw new CreationException();
+        } catch(CreationException e) {
+            e.printStackTrace();
+        }
     }
 
     public String getNom() {

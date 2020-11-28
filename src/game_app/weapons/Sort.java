@@ -6,11 +6,16 @@ public class Sort extends Arme {
 
     private int cout;
 
-    public Sort(String nom,int dammages,int cout) throws CreationException {
+    public Sort(String nom, int dammages, int cout) throws CreationException {
         super(nom, dammages);
-        if (cout>=0) {
-            this.cout = cout;
-        }else throw new CreationException();
+        try {
+            if(cout >= 0) {
+                this.cout = cout;
+            } else
+                throw new CreationException();
+        } catch(CreationException e) {
+            e.printStackTrace();
+        }
     }
 
     public int getCout() {
