@@ -33,6 +33,7 @@ public class Main extends Application {
             liste2.add(bow);
             Guerrier guerrier = new Guerrier(50,5,1,liste);
             Chasseur hunter = new Chasseur(34,17,1,liste2);
+            System.out.println(guerrier.health);
 
         } catch (CreationException e) {
             e.printStackTrace();
