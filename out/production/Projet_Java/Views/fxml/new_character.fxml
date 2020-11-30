@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewModels.NewCharacter">
+   <children>
+      <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/fond_new_character.jpg" />
+         </image>
+      </ImageView>
+      <Text fill="#fafafa" layoutX="373.0" layoutY="85.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="3.0" text="Choisissez Votre Classe" wrappingWidth="533.13671875">
+         <font>
+            <Font name="Berlin Sans FB" size="58.0" />
+         </font>
+      </Text>
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#retour_choose_menu" text="Retour">
+         <font>
+            <Font name="Berlin Sans FB" size="35.0" />
+         </font>
+         <effect>
+            <ColorAdjust brightness="-0.6" contrast="0.65" hue="-1.0" saturation="0.17" />
+         </effect>
+      </Button>
+      <Text fill="WHITE" layoutX="166.0" layoutY="149.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="3.0" text="Guerrier" wrappingWidth="163.13671875">
+         <font>
+            <Font name="Berlin Sans FB" size="47.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="590.0" layoutY="148.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="3.0" text="Mage" wrappingWidth="115.13671875">
+         <font>
+            <Font name="Berlin Sans FB" size="47.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="952.0" layoutY="149.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="3.0" text="Chasseur" wrappingWidth="175.13671875">
+         <font>
+            <Font name="Berlin Sans FB" size="47.0" />
+         </font>
+      </Text>
+      <Button fx:id="illustration_guerrier" layoutX="63.0" layoutY="179.0" mnemonicParsing="false" onMouseClicked="#create_guerrier_view" prefHeight="500.0" prefWidth="350.0" />
+      <Button fx:id="illustration_mage" layoutX="465.0" layoutY="179.0" mnemonicParsing="false" onMouseClicked="#create_mage_view" prefHeight="500.0" prefWidth="350.0" />
+      <Button fx:id="illustration_chasseur" layoutX="865.0" layoutY="179.0" mnemonicParsing="false" onMouseClicked="#create_chasseur_view" prefHeight="500.0" prefWidth="350.0" />
+   </children>
+</Pane>

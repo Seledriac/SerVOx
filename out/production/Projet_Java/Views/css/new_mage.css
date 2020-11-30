@@ -1,0 +1,4 @@
+#flamme-interdite:focused, #reveil-des-arcanes:focused, #tempete:focused {
+    -fx-border-color:black;
+    -fx-border-width: 3 3 3 3;
+}

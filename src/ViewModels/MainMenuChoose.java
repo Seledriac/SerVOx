@@ -14,10 +14,10 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
-public class MainMenu implements Initializable {
+public class MainMenuChoose implements Initializable {
 
     @FXML
-    protected ImageView main_menu_background;
+    protected ImageView main_menu_choose_background;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -35,11 +35,17 @@ public class MainMenu implements Initializable {
             e.printStackTrace();
         }
         Image image = new Image(inputstream);
-        main_menu_background.setImage(image);
+        ImageView main_menu_background;
+        main_menu_choose_background.setImage(image);
     }
 
-    public void loadMainMenuChoose(MouseEvent mouseEvent) throws IOException {
-        Main.gameManager.loadMainMenuChooseView();
+    public void load_new_character_view(MouseEvent mouseEvent) throws IOException {
+        Main.gameManager.loadNewCharacterView();
     }
+
+    public void load_choose_character_view(MouseEvent mouseEvent) throws IOException{
+        Main.gameManager.loadChooseCharacterView();
+    }
+
 
 }
