@@ -21,8 +21,8 @@ public class Main extends Application {
 		try {
 			sceneLoader = new SceneLoader(primaryStage);
 			gameManager = new GameManager();
+			gameManager.start();
 			primaryStage.setTitle("SerVOx");
-			sceneLoader.switchTo(SceneLoader.SCENE_MAIN_MENU);
 			primaryStage.getIcons().add(new Image("/Views/Images/icone.jpg"));
 			primaryStage.show();
 		} catch(Exception e) {

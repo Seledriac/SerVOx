@@ -14,7 +14,7 @@
                 <Font name="Berlin Sans FB" size="43.0" />
             </font>
             <effect>
-                <ColorAdjust brightness="0.4" contrast="1.0" hue="-0.88" saturation="1.0" />
+                <ColorAdjust brightness="0.4" contrast="1.0" hue="-0.88" saturation="0.8" />
             </effect>
         </Button>
         <Button layoutX="333.0" layoutY="354.0" mnemonicParsing="false" onMouseClicked="#load_choose_character_view" prefHeight="121.0" prefWidth="614.0" text="Charger Un Personnage Existant">
@@ -22,7 +22,7 @@
                 <Font name="Berlin Sans FB" size="41.0" />
             </font>
             <effect>
-                <ColorAdjust brightness="0.4" contrast="1.0" hue="-0.88" saturation="1.0" />
+                <ColorAdjust brightness="0.4" contrast="1.0" hue="-0.88" saturation="0.8" />
             </effect>
         </Button>
     </children>

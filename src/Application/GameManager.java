@@ -1,6 +1,8 @@
 package Application;
 
 
+import Models.DB.CharacterHandler;
+import Models.DB.WeaponHandler;
 import Models.Exceptions.ChasseurException;
 import Models.Exceptions.CreationException;
 import Models.Exceptions.GuerrierException;
@@ -23,6 +25,12 @@ public class GameManager {
 	public static final int MAGE = 2;
 	public static final int CHASSEUR = 3;
 
+	public void start() throws IOException {
+		CharacterHandler.createTableCharacters();
+//		WeaponHandler.createTableWeapons();
+		Main.sceneLoader.switchTo(SceneLoader.SCENE_MAIN_MENU);
+	}
+
 	public void loadMainMenuChooseView() throws IOException {
 		Main.sceneLoader.switchTo(SceneLoader.SCENE_MAIN_MENU_CHOOSE);
 	}
@@ -44,7 +52,11 @@ public class GameManager {
 	}
 
 	public void loadChooseCharacterView() throws IOException {
+		loadCharacters();
 		Main.sceneLoader.switchTo(SceneLoader.SCENE_CHOOSE_CHARACTER);
+	}
+	private void loadCharacters() throws IOException {
+
 	}
 
     public void CreateNewCharacter(String nom, int classe, ArrayList<Arme> weapons, ArrayList<Sort> sorts) throws MageException, CreationException, ChasseurException, GuerrierException, IOException {
@@ -65,6 +77,7 @@ public class GameManager {
 				break;
 		}
 		niveau = 1;
+		CharacterHandler.insertNewCharacter(perso);
 		startGame(1);
     }
 

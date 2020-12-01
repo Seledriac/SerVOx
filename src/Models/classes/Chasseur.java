@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class Chasseur extends Personnage {
 
-    public Chasseur(String nom, int health, int mana, int level, ArrayList<Arme> weapons, ArrayList<Sort> sorts) throws CreationException, ChasseurException {
+    public Chasseur(String nom, int level, int health, int mana, ArrayList<Arme> weapons, ArrayList<Sort> sorts) throws CreationException, ChasseurException {
         super(nom, health, mana, level, weapons, sorts);
         try {
             if (weapons.size() != 1 || !(weapons.get(0) instanceof Arc || sorts.size() != 1))

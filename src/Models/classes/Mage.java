@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class Mage extends Personnage {
 
-    public Mage(String nom, int health, int mana, int level, ArrayList<Arme> weapons, ArrayList<Sort> sorts) throws CreationException, MageException {
+    public Mage(String nom, int level, int health, int mana, ArrayList<Arme> weapons, ArrayList<Sort> sorts) throws CreationException, MageException {
         super(nom, health, mana, level, weapons, sorts);
         try {
             if (weapons.size() > 0 || sorts.size() != 2)

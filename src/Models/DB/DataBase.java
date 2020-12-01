@@ -25,10 +25,9 @@ public class DataBase {
         connection = null;
         try {
             // db parameters
-            String url = "jdbc:sqlite:Models.DB\\game.db";
+			String url = "jdbc:sqlite:servox.db";
             // create a connection to the database
-            connection = DriverManager.getConnection(url);
-            System.out.println("Connection to SQLite has been established.");
+			connection = DriverManager.getConnection(url);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         } 

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class Guerrier extends Personnage {
 
-    public Guerrier(String nom, int health, int mana, int level, ArrayList<Arme> weapons, ArrayList<Sort> sorts) throws CreationException, GuerrierException {
+    public Guerrier(String nom, int level, int health, int mana, ArrayList<Arme> weapons, ArrayList<Sort> sorts) throws CreationException, GuerrierException {
         super(nom, health, mana, level, weapons, sorts);
         int i = 0, j = 0;
         try {

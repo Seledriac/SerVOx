@@ -12,7 +12,8 @@ public abstract class Personnage {
     protected ArrayList<Arme> weapons = new ArrayList<Arme>();
     protected ArrayList<Sort> sorts = new ArrayList<Sort>();
 
-    public Personnage(String nom, int health, int mana, int level, ArrayList<Arme> weapons, ArrayList<Sort> sorts) throws CreationException {
+    public Personnage(String nom, int level, int health, int mana, ArrayList<Arme> weapons, ArrayList<Sort> sorts) throws CreationException {
+
         try {
             if (health > 0 || mana >= 0 || level > 0 || sorts.size() == 1 || sorts.size() == 2) {
                 this.nom = nom;
@@ -26,6 +27,14 @@ public abstract class Personnage {
         } catch (CreationException e) {
             e.printStackTrace();
         }
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
     public int getHealth() {

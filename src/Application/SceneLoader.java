@@ -9,8 +9,6 @@ import javafx.stage.Stage;
 
 public class SceneLoader {
 
-
-
 	private Stage stage;
 	public static final int SCENE_MAIN_MENU = 0;
 	public static final int SCENE_MAIN_MENU_CHOOSE = 1;

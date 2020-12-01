@@ -15,7 +15,7 @@
             <Font name="Berlin Sans FB" size="58.0" />
          </font>
          <effect>
-            <ColorAdjust brightness="0.4" contrast="1.0" hue="-0.88" saturation="1.0" />
+            <ColorAdjust brightness="0.4" contrast="1.0" hue="-0.88" saturation="0.8" />
          </effect>
       </Button>
       <ImageView fx:id="titre_main_menu" fitHeight="165.0" fitWidth="573.0" layoutX="354.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true">
