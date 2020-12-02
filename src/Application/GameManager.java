@@ -12,6 +12,8 @@ import Models.classes.Guerrier;
 import Models.classes.Mage;
 import Models.classes.Personnage;
 import Models.weapons.Arme;
+import Models.weapons.Bouclier;
+import Models.weapons.Epee;
 import Models.weapons.Sort;
 
 import java.io.IOException;
@@ -80,6 +82,24 @@ public class GameManager {
 
     public void chooseCharacter(Personnage perso) throws IOException {
 		this.perso = perso;
+		if(!(perso instanceof Mage)) {
+			if(perso instanceof Guerrier) {
+				for(Arme arme : perso.getWeapons()) {
+					if(arme instanceof Epee) {
+						perso.equiperArme(arme);
+						break;
+					}
+				}
+				for(Arme arme : perso.getWeapons()) {
+					if(arme instanceof Bouclier) {
+						((Guerrier)perso).equiperBouclier((Bouclier)arme);
+						break;
+					}
+				}
+			} else {
+				perso.equiperArme(perso.getWeapons().get(0));
+			}
+		}
 		startGame();
 	}
 

@@ -80,16 +80,16 @@ public class NewGuerrier implements Initializable {
             switch (num_epee) {
                 case 1:
                     weapons.add(new Epee("Durandal", 10));
-                    weapons.add(new Bouclier("Bouclier en fer", 0, 5));
+                    weapons.add(new Bouclier("Bouclier en Fer", 0, 5));
                     sorts.add(new Sort("Démacia", 10, 3));
                     break;
                 case 2:
                     weapons.add(new Epee("Sobek", 15));
-                    weapons.add(new Bouclier("Bouclier en fer", 0, 5));
+                    weapons.add(new Bouclier("Bouclier en Fer", 0, 5));
                     sorts.add(new Sort("Démacia", 10, 3));
                     break;
                 case 3:
-                    weapons.add(new Bouclier("Bouclier en fer", 0, 5));
+                    weapons.add(new Bouclier("Bouclier en Fer", 0, 5));
                     weapons.add(new Epee("Excalibur", 20));
                     break;
                 default:

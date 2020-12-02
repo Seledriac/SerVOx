@@ -35,6 +35,7 @@ public class WeaponHandler {
             armes.add(new Epee("Durandal", 0));
             armes.add(new Epee("Sobek", 0));
             armes.add(new Epee("Excalibur", 0));
+            armes.add(new Bouclier("Bouclier en Fer", 0, 1));
             armes.add(new Arc("Thor'Idal", 0, 0));
             armes.add(new Arc("Atiesh", 0, 0));
             armes.add(new Arc("Val'Anyr", 0, 0));

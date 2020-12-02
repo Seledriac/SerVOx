@@ -3,7 +3,6 @@ package Models.weapons;
 import Models.Exceptions.CreationException;
 
 public abstract class Arme {
-    protected int id_arme;
     protected String nom;
     protected int damages;
 
@@ -17,14 +16,6 @@ public abstract class Arme {
         } catch(CreationException e) {
             e.printStackTrace();
         }
-    }
-
-    public int getId_arme() {
-        return id_arme;
-    }
-
-    public void setId_arme(int id_arme) {
-        this.id_arme = id_arme;
     }
 
     public String getNom() {
@@ -41,5 +32,21 @@ public abstract class Arme {
 
     public void setDamages(int dammages) {
         this.damages = dammages;
+    }
+
+    @Override
+    public String toString() {
+        String classe = "";
+        if(this instanceof Epee)
+            classe = "Épée";
+        else if(this instanceof Bouclier)
+            classe = "Bouclier";
+        else if(this instanceof Arc)
+            classe = "Arc";
+        else if(this instanceof Sort)
+            classe = "Sort";
+        else
+            classe = "SortUltime";
+        return classe + " => Nom : " + nom + "; Dégats : " + damages;
     }
 }

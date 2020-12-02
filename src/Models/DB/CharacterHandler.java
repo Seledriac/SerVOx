@@ -131,12 +131,14 @@ public class CharacterHandler {
 							r.getInt("degats"),
 							r.getInt("cout")
 						));
+						break;
 					case WeaponHandler.SORT_ULTIME:
 						sorts.add(new SortUltime(
 							r.getString("nom_arme"),
 							r.getInt("degats"),
 							r.getInt("cout")
 						));
+						break;
 					default:
 						break;
 				}
@@ -225,7 +227,10 @@ public class CharacterHandler {
 			}
 			for(Arme arme : personnage.getWeapons()) {
 				PreparedStatement s_armes_update = DataBase.getInstance().prepareStatement(sql_armes_update);
-				s_armes_update.setInt(1, arme.getDamages());
+				if(arme instanceof Bouclier)
+					s_armes_update.setInt(1, ((Bouclier) arme).getDefense());
+				else
+					s_armes_update.setInt(1, arme.getDamages());
 				s_armes_update.setNull(2, java.sql.Types.INTEGER);
 				if(arme instanceof Arc)
 					s_armes_update.setInt(3, ((Arc)arme).getFleches());

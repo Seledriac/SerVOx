@@ -23,4 +23,9 @@ public class Arc extends Arme {
     }
 
     public void setFleches(int fleches) { this.fleches = fleches; }
+
+    @Override
+    public String toString() {
+        return super.toString() + "; Nombre de flèches : " + fleches;
+    }
 }

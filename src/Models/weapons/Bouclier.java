@@ -26,4 +26,10 @@ public class Bouclier extends Arme {
     public void setDefense(int defense) {
         this.defense = defense;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + "; Défense : " + defense;
+    }
+
 }
