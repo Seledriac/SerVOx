@@ -13,20 +13,12 @@ import java.util.ArrayList;
 public class Guerrier extends Personnage {
 
     public Guerrier(String nom, int level, int health, int mana, ArrayList<Arme> weapons, ArrayList<Sort> sorts) throws CreationException, GuerrierException {
-        super(nom, health, mana, level, weapons, sorts);
-        int i = 0, j = 0;
+        super(nom, level, health, mana, weapons, sorts);
         try {
-            if(weapons.size() <= 2) {
-                for(Arme arme : weapons) {
-                    if(arme instanceof Epee)
-                        i++;
-                    else if (arme instanceof Bouclier)
-                        j++;
-                }
-                if(i > 1 || j > 1 || (i == 0 && j == 0))
+            for(Arme arme : weapons) {
+                if (!(arme instanceof Epee) && !(arme instanceof Bouclier))
                     throw new GuerrierException();
-            } else
-                throw new GuerrierException();
+            }
         } catch (GuerrierException e) {
             e.printStackTrace();
         }

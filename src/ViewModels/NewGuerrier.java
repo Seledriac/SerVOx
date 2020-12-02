@@ -1,6 +1,7 @@
 package ViewModels;
 
 import Application.Main;
+import Models.DB.CharacterHandler;
 import Models.Exceptions.ChasseurException;
 import Models.Exceptions.CreationException;
 import Models.Exceptions.GuerrierException;
@@ -90,7 +91,7 @@ public class NewGuerrier implements Initializable {
                 default:
                     break;
             }
-            Main.gameManager.CreateNewCharacter(nom.getCharacters().toString(), Main.gameManager.GUERRIER, weapons, sorts);
+            Main.gameManager.CreateNewCharacter(nom.getCharacters().toString(), CharacterHandler.GUERRIER);
         }
     }
 

@@ -42,19 +42,23 @@ public class NewCharacter implements Initializable {
         illustration_chasseur.setGraphic(view_chasseur);
     }
 
-    public void create_guerrier_view(MouseEvent mouseEvent) throws IOException {
+    @FXML
+    protected void create_guerrier_view(MouseEvent mouseEvent) throws IOException {
         Main.gameManager.loadNewGuerrierView();
     }
 
-    public void create_mage_view(MouseEvent mouseEvent) throws IOException {
+    @FXML
+    protected void create_mage_view(MouseEvent mouseEvent) throws IOException {
         Main.gameManager.loadNewMageView();
     }
 
-    public void create_chasseur_view(MouseEvent mouseEvent) throws IOException {
+    @FXML
+    protected void create_chasseur_view(MouseEvent mouseEvent) throws IOException {
         Main.gameManager.loadNewChasseurView();
     }
 
-    public void retour_choose_menu(MouseEvent mouseEvent) throws IOException {
+    @FXML
+    protected void retour_choose_menu(MouseEvent mouseEvent) throws IOException {
         Main.gameManager.loadMainMenuChooseView();
     }
 

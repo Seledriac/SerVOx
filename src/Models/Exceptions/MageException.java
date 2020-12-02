@@ -2,6 +2,6 @@ package Models.Exceptions;
 
 public class MageException extends Exception{
     public MageException(){
-        super("Un mage lance deux sorts.");
+        super("Un mage ne doit posséder que des sorts.");
     }
 }

@@ -25,7 +25,7 @@ public class DataBase {
         connection = null;
         try {
             // db parameters
-			String url = "jdbc:sqlite:servox.db";
+			String url = "jdbc:sqlite:./src/Models/DB/servox.db";
             // create a connection to the database
 			connection = DriverManager.getConnection(url);
         } catch (SQLException e) {

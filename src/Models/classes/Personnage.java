@@ -71,6 +71,14 @@ public abstract class Personnage {
         this.weapons = weapons;
     }
 
+    public ArrayList<Sort> getSorts() {
+        return sorts;
+    }
+
+    public void setSorts(ArrayList<Sort> sorts) {
+        this.sorts = sorts;
+    }
+
     public void sort_basique(Personnage ennemi) {
         if(mana > sorts.get(0).getCout()) {
             ennemi.prendreDesDegats(sorts.get(0).getDamages());
@@ -79,4 +87,17 @@ public abstract class Personnage {
             System.out.println("Pas assez de mana");
         }
     }
+
+    @Override
+    public String toString() {
+        String classe = "";
+        if(this instanceof Guerrier)
+            classe = "Guerrier";
+        else if(this instanceof Mage)
+            classe = "Mage";
+        else
+            classe = "Chasseur";
+        return classe + " => Nom : " + nom + "; Niveau : " + level + "; Vie : " + health + "; Mana : " + mana + "; Armes : " + weapons + "; Sorts : " + sorts;
+    }
+
 }

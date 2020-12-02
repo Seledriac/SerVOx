@@ -11,10 +11,12 @@ import java.util.ArrayList;
 public class Chasseur extends Personnage {
 
     public Chasseur(String nom, int level, int health, int mana, ArrayList<Arme> weapons, ArrayList<Sort> sorts) throws CreationException, ChasseurException {
-        super(nom, health, mana, level, weapons, sorts);
+        super(nom, level, health, mana, weapons, sorts);
         try {
-            if (weapons.size() != 1 || !(weapons.get(0) instanceof Arc || sorts.size() != 1))
-                throw new ChasseurException();
+            for(Arme arme : weapons) {
+                if(!(arme instanceof Arc))
+                    throw new ChasseurException();
+            }
         } catch (ChasseurException e) {
             e.printStackTrace();
         }

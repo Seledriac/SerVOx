@@ -1,6 +1,7 @@
 package ViewModels;
 
 import Application.Main;
+import Models.DB.CharacterHandler;
 import Models.Exceptions.ChasseurException;
 import Models.Exceptions.CreationException;
 import Models.Exceptions.GuerrierException;
@@ -89,7 +90,7 @@ public class NewChasseur implements Initializable {
                     break;
             }
             sorts.add(new Sort("Traque", 10, 10));
-            Main.gameManager.CreateNewCharacter(nom.getCharacters().toString(), Main.gameManager.CHASSEUR, weapons, sorts);
+            Main.gameManager.CreateNewCharacter(nom.getCharacters().toString(), CharacterHandler.CHASSEUR);
         }
     }
 
