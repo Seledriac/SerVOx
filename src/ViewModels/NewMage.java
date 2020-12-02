@@ -8,6 +8,7 @@ import Models.Exceptions.GuerrierException;
 import Models.Exceptions.MageException;
 import Models.weapons.Arme;
 import Models.weapons.Sort;
+import Models.weapons.SortUltime;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -78,18 +79,18 @@ public class NewMage implements Initializable {
             sorts.add(new Sort("Petite Boule de Feu", 10, 5));
             switch (num_sort) {
                 case 1:
-                    sorts.add(new Sort("Flamme Interdite", 20, 15));
+                    sorts.add(new SortUltime("Flamme Interdite", 20, 15));
                     break;
                 case 2:
-                    sorts.add(new Sort("Réveil des Arcanes", 50, 40));
+                    sorts.add(new SortUltime("Réveil des Arcanes", 50, 40));
                     break;
                 case 3:
-                    sorts.add(new Sort("Tempête", 30, 20));
+                    sorts.add(new SortUltime("Tempête", 30, 20));
                     break;
                 default:
                     break;
             }
-            Main.gameManager.CreateNewCharacter(nom.getCharacters().toString(), CharacterHandler.MAGE);
+            Main.gameManager.CreateNewCharacter(nom.getCharacters().toString(), CharacterHandler.MAGE, weapons, sorts);
         }
     }
 

@@ -21,7 +21,7 @@ public class GameManager {
 
 	private Personnage perso;
 
-	public void start() throws IOException {
+	public void start() throws IOException, CreationException {
 		CharacterHandler.createTableCharacters();
 		WeaponHandler.createTableWeapons();
 		CharacterHandler.createTableArmePersonnage();
@@ -56,21 +56,25 @@ public class GameManager {
 		return CharacterHandler.listCharacters(Integer.MAX_VALUE);
 	}
 
-    public void CreateNewCharacter(String nom, int classe) throws MageException, CreationException, ChasseurException, GuerrierException, IOException {
+    public void CreateNewCharacter(String nom, int classe, ArrayList<Arme> weapons, ArrayList<Sort> sorts) throws MageException, CreationException, ChasseurException, GuerrierException, IOException {
 		switch (classe) {
 			case CharacterHandler.GUERRIER:
-				perso = new Guerrier(nom, 1, 100, 50, new ArrayList<Arme>(), new ArrayList<Sort>());
+				perso = new Guerrier(nom, 1, 100, 50, weapons, sorts);
+				perso.equiperArme(weapons.get(0));
+				perso.equiperArme(weapons.get(1));
 				break;
 			case CharacterHandler.MAGE:
-				perso = new Mage(nom, 1, 70, 100, new ArrayList<Arme>(), new ArrayList<Sort>());
+				perso = new Mage(nom, 1, 70, 100, weapons, sorts);
 				break;
 			case CharacterHandler.CHASSEUR:
-				perso = new Chasseur(nom, 1, 90, 60, new ArrayList<Arme>(), new ArrayList<Sort>());
+				perso = new Chasseur(nom, 1, 90, 60, weapons, sorts);
+				perso.equiperArme(weapons.get(0));
 				break;
 			default:
 				break;
 		}
 		CharacterHandler.insertNewCharacter(perso);
+		CharacterHandler.updateCharacter(perso);
 		startGame();
     }
 

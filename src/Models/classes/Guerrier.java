@@ -24,6 +24,10 @@ public class Guerrier extends Personnage {
         }
     }
 
+    public void equiperBouclier(Bouclier bouclier) {
+        bouclier_equipe = bouclier;
+    }
+
     @Override
     public void prendreDesDegats(int degats) {
         Bouclier bouclier = null;

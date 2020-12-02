@@ -4,7 +4,7 @@ import Models.Exceptions.CreationException;
 
 public class Sort extends Arme {
 
-    private int cout;
+    protected int cout;
 
     public Sort(String nom, int dammages, int cout) throws CreationException {
         super(nom, dammages);

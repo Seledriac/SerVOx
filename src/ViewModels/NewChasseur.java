@@ -90,7 +90,7 @@ public class NewChasseur implements Initializable {
                     break;
             }
             sorts.add(new Sort("Traque", 10, 10));
-            Main.gameManager.CreateNewCharacter(nom.getCharacters().toString(), CharacterHandler.CHASSEUR);
+            Main.gameManager.CreateNewCharacter(nom.getCharacters().toString(), CharacterHandler.CHASSEUR, weapons, sorts);
         }
     }
 

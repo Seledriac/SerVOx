@@ -1,8 +1,7 @@
 package Models.classes;
 
-import Models.weapons.Arme;
+import Models.weapons.*;
 import Models.Exceptions.CreationException;
-import Models.weapons.Sort;
 
 import java.util.ArrayList;
 
@@ -11,11 +10,12 @@ public abstract class Personnage {
     protected int health, mana, level;
     protected ArrayList<Arme> weapons = new ArrayList<Arme>();
     protected ArrayList<Sort> sorts = new ArrayList<Sort>();
+    protected Arme arme_equipee;
+    protected Bouclier bouclier_equipe;
 
     public Personnage(String nom, int level, int health, int mana, ArrayList<Arme> weapons, ArrayList<Sort> sorts) throws CreationException {
-
         try {
-            if (health > 0 || mana >= 0 || level > 0 || sorts.size() == 1 || sorts.size() == 2) {
+            if (health > 0 && mana >= 0 && level > 0) {
                 this.nom = nom;
                 this.health = health;
                 this.level = level;
@@ -27,6 +27,11 @@ public abstract class Personnage {
         } catch (CreationException e) {
             e.printStackTrace();
         }
+    }
+
+    public void equiperArme(Arme arme) {
+        if(arme instanceof Epee || arme instanceof Arc)
+            arme_equipee = arme;
     }
 
     public String getNom() {

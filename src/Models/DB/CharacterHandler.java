@@ -81,7 +81,7 @@ public class CharacterHandler {
 			s.setInt(4, personnage.getMana());
 			s.executeUpdate();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.exit(1);
 		}
 	}
 
@@ -122,11 +122,17 @@ public class CharacterHandler {
 						weapons.add(new Arc(
 								r.getString("nom_arme"),
 								r.getInt("degats"),
-								r.getInt("nb_fleches")
+								r.getInt("nbfleches")
 						));
 						break;
 					case WeaponHandler.SORT:
 						sorts.add(new Sort(
+							r.getString("nom_arme"),
+							r.getInt("degats"),
+							r.getInt("cout")
+						));
+					case WeaponHandler.SORT_ULTIME:
+						sorts.add(new SortUltime(
 							r.getString("nom_arme"),
 							r.getInt("degats"),
 							r.getInt("cout")
@@ -197,53 +203,52 @@ public class CharacterHandler {
 
 	public static void updateCharacter(Personnage personnage) {
 		String sql_pers = "UPDATE personnage"
-				+ "SET niveau = ? , vie = ?, mana = ?"
-				+ "WHERE nom = ?";
-		String sql_armes_insert = " INSERT INTO arme_personnage (nom_arme, nom_perso, 0, NULL, NULL)"
-				+ " VALUES(?, ?)"
-				+ " WHERE NOT EXISTS(SELECT * FROM arme_personnage WHERE nom_arme='?' AND nom_perso='?');";
+				+ " SET niveau=? , vie=?, mana=?"
+				+ " WHERE nom=?";
+		String sql_armes_insert = " REPLACE INTO arme_personnage (nom_arme, nom_perso, degats)"
+				+ " VALUES(?, ?, 0);";
 		String sql_armes_update = " UPDATE arme_personnage"
-				+ " SET degats = ? , cout = ?, nbfleches = '?'"
-				+ " WHERE nom_arme='?' AND nom_perso='?';";
+				+ " SET degats = ? , cout = ?, nbfleches = ?"
+				+ " WHERE nom_arme=? AND nom_perso=?;";
 		try {
 			PreparedStatement s_pers = DataBase.getInstance().prepareStatement(sql_pers);
 			s_pers.setInt(1, personnage.getLevel());
 			s_pers.setInt(2, personnage.getHealth());
 			s_pers.setInt(3, personnage.getMana());
 			s_pers.setString(4, personnage.getNom());
-			s_pers.execute(sql_pers);
+			s_pers.execute();
 			for(Arme arme : personnage.getWeapons()) {
 				PreparedStatement s_armes_insert = DataBase.getInstance().prepareStatement(sql_armes_insert);
 				s_armes_insert.setString(1, arme.getNom());
 				s_armes_insert.setString(2, personnage.getNom());
-				s_armes_insert.setString(3, arme.getNom());
-				s_armes_insert.setString(4, personnage.getNom());
-				s_armes_insert.execute(sql_armes_insert);
+				s_armes_insert.execute();
 			}
 			for(Arme arme : personnage.getWeapons()) {
 				PreparedStatement s_armes_update = DataBase.getInstance().prepareStatement(sql_armes_update);
 				s_armes_update.setInt(1, arme.getDamages());
+				s_armes_update.setNull(2, java.sql.Types.INTEGER);
 				if(arme instanceof Arc)
 					s_armes_update.setInt(3, ((Arc)arme).getFleches());
+				else
+					s_armes_update.setNull(3, java.sql.Types.INTEGER);
 				s_armes_update.setString(4, arme.getNom());
 				s_armes_update.setString(5, personnage.getNom());
-				s_armes_update.execute(sql_armes_update);
+				s_armes_update.execute();
 			}
 			for(Sort sort : personnage.getSorts()) {
 				PreparedStatement s_sorts_insert = DataBase.getInstance().prepareStatement(sql_armes_insert);
 				s_sorts_insert.setString(1, sort.getNom());
 				s_sorts_insert.setString(2, personnage.getNom());
-				s_sorts_insert.setString(3, sort.getNom());
-				s_sorts_insert.setString(4, personnage.getNom());
-				s_sorts_insert.execute(sql_armes_insert);
+				s_sorts_insert.execute();
 			}
 			for(Sort sort : personnage.getSorts()) {
 				PreparedStatement s_sorts_update = DataBase.getInstance().prepareStatement(sql_armes_update);
 				s_sorts_update.setInt(1, sort.getDamages());
 				s_sorts_update.setInt(2, sort.getCout());
+				s_sorts_update.setNull(3, java.sql.Types.INTEGER);
 				s_sorts_update.setString(4, sort.getNom());
 				s_sorts_update.setString(5, personnage.getNom());
-				s_sorts_update.execute(sql_armes_update);
+				s_sorts_update.execute();
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
