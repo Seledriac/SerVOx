@@ -28,7 +28,7 @@ public class MainMenuChoose implements Initializable {
         FileInputStream inputstream = null;
         try {
             if(heure < 6 || heure > 18) {
-                inputstream = new FileInputStream("src\\Views\\Images\\fond_menu_nuit.png");
+                inputstream = new FileInputStream("src\\Views\\Images\\fond_menu_nuit.jpg");
             } else
                 inputstream = new FileInputStream("src\\Views\\Images\\fond_menu_jour.png");
         } catch (FileNotFoundException e) {
@@ -39,11 +39,13 @@ public class MainMenuChoose implements Initializable {
         main_menu_choose_background.setImage(image);
     }
 
-    public void load_new_character_view(MouseEvent mouseEvent) throws IOException {
+    @FXML
+    protected void load_new_character_view(MouseEvent mouseEvent) throws IOException {
         Main.gameManager.loadNewCharacterView();
     }
 
-    public void load_choose_character_view(MouseEvent mouseEvent) throws IOException{
+    @FXML
+    protected void load_choose_character_view(MouseEvent mouseEvent) throws IOException{
         Main.gameManager.loadChooseCharacterView();
     }
 

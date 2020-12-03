@@ -57,23 +57,28 @@ public class NewGuerrier implements Initializable {
         excalibur.setGraphic(view_excalibur);
     }
 
-    public void retour_new_character(MouseEvent mouseEvent) throws IOException {
+    @FXML
+    protected void retour_new_character(MouseEvent mouseEvent) throws IOException {
         Main.gameManager.loadNewCharacterView();
     }
 
-    public void selectDurandal(MouseEvent mouseEvent) {
+    @FXML
+    protected void selectDurandal(MouseEvent mouseEvent) {
         num_epee = 1;
     }
 
-    public void selectSobek(MouseEvent mouseEvent) {
+    @FXML
+    protected void selectSobek(MouseEvent mouseEvent) {
         num_epee = 2;
     }
 
-    public void selectExcalibur(MouseEvent mouseEvent) {
+    @FXML
+    protected void selectExcalibur(MouseEvent mouseEvent) {
         num_epee = 3;
     }
 
-    public void loadGame(MouseEvent mouseEvent) throws IOException, CreationException, GuerrierException, ChasseurException, MageException {
+    @FXML
+    protected void loadGame(MouseEvent mouseEvent) throws IOException, CreationException, GuerrierException, ChasseurException, MageException {
         if(num_epee != 0 && nom.getCharacters().toString() != "") {
             ArrayList<Arme> weapons = new ArrayList<>();
             ArrayList<Sort> sorts = new ArrayList<>();
@@ -89,8 +94,8 @@ public class NewGuerrier implements Initializable {
                     sorts.add(new Sort("Démacia", 10, 3));
                     break;
                 case 3:
-                    weapons.add(new Bouclier("Bouclier en Fer", 0, 5));
                     weapons.add(new Epee("Excalibur", 20));
+                    weapons.add(new Bouclier("Bouclier en Fer", 0, 5));
                     break;
                 default:
                     break;

@@ -56,23 +56,28 @@ public class NewMage implements Initializable {
         tempete.setGraphic(view_tempete);
     }
 
-    public void retour_new_character(MouseEvent mouseEvent) throws IOException {
+    @FXML
+    protected void retour_new_character(MouseEvent mouseEvent) throws IOException {
         Main.gameManager.loadNewCharacterView();
     }
 
-    public void selectFlammeInterdite(MouseEvent mouseEvent) {
+    @FXML
+    protected void selectFlammeInterdite(MouseEvent mouseEvent) {
         num_sort = 1;
     }
 
-    public void selectReveilDesArcanes(MouseEvent mouseEvent) {
+    @FXML
+    protected void selectReveilDesArcanes(MouseEvent mouseEvent) {
         num_sort = 2;
     }
 
-    public void selectTempete(MouseEvent mouseEvent) {
+    @FXML
+    protected void selectTempete(MouseEvent mouseEvent) {
         num_sort = 3;
     }
 
-    public void loadGame(MouseEvent mouseEvent) throws IOException, CreationException, GuerrierException, ChasseurException, MageException {
+    @FXML
+    protected void loadGame(MouseEvent mouseEvent) throws IOException, CreationException, GuerrierException, ChasseurException, MageException {
         if(num_sort != 0 && nom.getCharacters().toString() != "") {
             ArrayList<Arme> weapons = new ArrayList<>();
             ArrayList<Sort> sorts = new ArrayList<>();

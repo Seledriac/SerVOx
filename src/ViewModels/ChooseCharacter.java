@@ -113,7 +113,8 @@ public class ChooseCharacter implements Initializable {
         Main.gameManager.chooseCharacter(persos.get(i));
     }
 
-    public void retour_choose_menu(MouseEvent mouseEvent) throws IOException {
+    @FXML
+    protected void retour_choose_menu(MouseEvent mouseEvent) throws IOException {
         Main.gameManager.loadMainMenuChooseView();
     }
 

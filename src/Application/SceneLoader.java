@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 
 public class SceneLoader {
 
-	private Stage stage;
+    private Stage stage;
 	public static final int SCENE_MAIN_MENU = 0;
 	public static final int SCENE_MAIN_MENU_CHOOSE = 1;
 	public static final int SCENE_NEW_CHARACTER = 2;
@@ -18,6 +18,7 @@ public class SceneLoader {
 	public static final int SCENE_NEW_CHASSEUR = 5;
 	public static final int SCENE_CHOOSE_CHARACTER = 6;
 	public static final int SCENE_GAME = 7;
+	public static final int SCENE_NEXT_FIGHT = 8;
 
 	public SceneLoader(Stage stage) {
 		this.stage = stage;
@@ -48,6 +49,9 @@ public class SceneLoader {
 				break;
 			case SCENE_GAME:
 				makeSceneGame(stage);
+				break;
+			case SCENE_NEXT_FIGHT:
+				makeSceneNextFight(stage);
 				break;
 			default:
 				break;
@@ -103,6 +107,11 @@ public class SceneLoader {
 	private void makeSceneGame(Stage stage) throws IOException {
 		Scene scene_game = makeBasicScene("/Views/fxml/game.fxml");
 		stage.setScene(scene_game);
+	}
+
+	private void makeSceneNextFight(Stage stage) throws IOException {
+		Scene scene_next_fight = makeBasicScene("/Views/fxml/next_fight.fxml");
+		stage.setScene(scene_next_fight);
 	}
 
 }

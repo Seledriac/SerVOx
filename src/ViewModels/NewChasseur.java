@@ -56,23 +56,28 @@ public class NewChasseur implements Initializable {
         valanyr.setGraphic(view_valanyr);
     }
 
-    public void retour_new_character(MouseEvent mouseEvent) throws IOException {
+    @FXML
+    protected void retour_new_character(MouseEvent mouseEvent) throws IOException {
         Main.gameManager.loadNewCharacterView();
     }
 
-    public void selectThoridal(MouseEvent mouseEvent) {
+    @FXML
+    protected void selectThoridal(MouseEvent mouseEvent) {
         num_arc = 1;
     }
 
-    public void selectAtiesh(MouseEvent mouseEvent) {
+    @FXML
+    protected void selectAtiesh(MouseEvent mouseEvent) {
         num_arc = 2;
     }
 
-    public void selectValanyr(MouseEvent mouseEvent) {
+    @FXML
+    protected void selectValanyr(MouseEvent mouseEvent) {
         num_arc = 3;
     }
 
-    public void loadGame(MouseEvent mouseEvent) throws IOException, CreationException, GuerrierException, ChasseurException, MageException {
+    @FXML
+    protected void loadGame(MouseEvent mouseEvent) throws IOException, CreationException, GuerrierException, ChasseurException, MageException {
         if(num_arc != 0 && nom.getCharacters().toString() != "") {
             ArrayList<Arme> weapons = new ArrayList<>();
             ArrayList<Sort> sorts = new ArrayList<>();
