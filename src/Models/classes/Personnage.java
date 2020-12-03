@@ -3,17 +3,18 @@ package Models.classes;
 import Models.weapons.*;
 import Models.Exceptions.CreationException;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public abstract class Personnage {
+public abstract class Personnage implements Serializable {
     protected String nom;
-    protected int health, max_health, mana, max_mana, level;
+    protected int health, max_health, mana, max_mana, level, id_histoire;
     protected ArrayList<Arme> weapons = new ArrayList<Arme>();
     protected ArrayList<Sort> sorts = new ArrayList<Sort>();
     protected Arme arme_equipee;
     protected Bouclier bouclier_equipe;
 
-    public Personnage(String nom, int level, int health, int mana, ArrayList<Arme> weapons, ArrayList<Sort> sorts) throws CreationException {
+    public Personnage(String nom, int level, int health, int mana, ArrayList<Arme> weapons, ArrayList<Sort> sorts, int id_histoire) throws CreationException {
         try {
             if (health > 0 && mana >= 0 && level > 0) {
                 this.nom = nom;
@@ -24,11 +25,20 @@ public abstract class Personnage {
                 this.max_mana = mana;
                 this.weapons = weapons;
                 this.sorts = sorts;
+                this.id_histoire = id_histoire;
             } else
                 throw new CreationException();
         } catch (CreationException e) {
             e.printStackTrace();
         }
+    }
+
+    public int getId_histoire() {
+        return id_histoire;
+    }
+
+    public void setId_histoire(int id_histoire) {
+        this.id_histoire = id_histoire;
     }
 
     public void equiperArme(Arme arme) {

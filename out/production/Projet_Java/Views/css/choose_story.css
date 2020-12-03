@@ -1,0 +1,4 @@
+#guerriers:focused, #mages:focused, #chasseurs:focused, #random:focused {
+    -fx-border-color:black;
+    -fx-border-width: 3 3 3 3;
+}

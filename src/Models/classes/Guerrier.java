@@ -8,12 +8,13 @@ import Models.weapons.Bouclier;
 import Models.weapons.Epee;
 import Models.weapons.Sort;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Guerrier extends Personnage {
+public class Guerrier extends Personnage implements Serializable {
 
-    public Guerrier(String nom, int level, int health, int mana, ArrayList<Arme> weapons, ArrayList<Sort> sorts) throws CreationException, GuerrierException {
-        super(nom, level, health, mana, weapons, sorts);
+    public Guerrier(String nom, int level, int health, int mana, ArrayList<Arme> weapons, ArrayList<Sort> sorts, int id_histoire) throws CreationException, GuerrierException {
+        super(nom, level, health, mana, weapons, sorts, id_histoire);
         try {
             for(Arme arme : weapons) {
                 if (!(arme instanceof Epee) && !(arme instanceof Bouclier))
@@ -22,6 +23,10 @@ public class Guerrier extends Personnage {
         } catch (GuerrierException e) {
             e.printStackTrace();
         }
+    }
+
+    public Bouclier getBouclierEquipe() {
+        return bouclier_equipe;
     }
 
     public void equiperBouclier(Bouclier bouclier) {

@@ -19,6 +19,8 @@ public class SceneLoader {
 	public static final int SCENE_CHOOSE_CHARACTER = 6;
 	public static final int SCENE_GAME = 7;
 	public static final int SCENE_NEXT_FIGHT = 8;
+	public static final int SCENE_CHOOSE_STORY = 9;
+	public static final int SCENE_FIN_HISTOIRE = 10;
 
 	public SceneLoader(Stage stage) {
 		this.stage = stage;
@@ -52,6 +54,12 @@ public class SceneLoader {
 				break;
 			case SCENE_NEXT_FIGHT:
 				makeSceneNextFight(stage);
+				break;
+			case SCENE_CHOOSE_STORY:
+				makeSceneChooseStory(stage);
+				break;
+			case SCENE_FIN_HISTOIRE:
+				makeSceneFinHistoire(stage);
 				break;
 			default:
 				break;
@@ -113,6 +121,17 @@ public class SceneLoader {
 	private void makeSceneNextFight(Stage stage) throws IOException {
 		Scene scene_next_fight = makeBasicScene("/Views/fxml/next_fight.fxml");
 		stage.setScene(scene_next_fight);
+	}
+
+	private void makeSceneChooseStory(Stage stage) throws IOException {
+		Scene scene_choose_story = makeBasicScene("/Views/fxml/choose_story.fxml");
+		scene_choose_story.getStylesheets().add(getClass().getResource("/Views/css/choose_story.css").toExternalForm());
+		stage.setScene(scene_choose_story);
+	}
+
+	private void makeSceneFinHistoire(Stage stage) throws IOException {
+		Scene scene_fin_story = makeBasicScene("/Views/fxml/end_story.fxml");
+		stage.setScene(scene_fin_story);
 	}
 
 }

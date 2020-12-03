@@ -6,12 +6,13 @@ import Models.weapons.Arc;
 import Models.weapons.Arme;
 import Models.weapons.Sort;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Chasseur extends Personnage {
+public class Chasseur extends Personnage implements Serializable {
 
-    public Chasseur(String nom, int level, int health, int mana, ArrayList<Arme> weapons, ArrayList<Sort> sorts) throws CreationException, ChasseurException {
-        super(nom, level, health, mana, weapons, sorts);
+    public Chasseur(String nom, int level, int health, int mana, ArrayList<Arme> weapons, ArrayList<Sort> sorts, int id_histoire) throws CreationException, ChasseurException {
+        super(nom, level, health, mana, weapons, sorts, id_histoire);
         try {
             for(Arme arme : weapons) {
                 if(!(arme instanceof Arc))

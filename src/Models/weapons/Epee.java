@@ -2,7 +2,9 @@ package Models.weapons;
 
 import Models.Exceptions.CreationException;
 
-public class Epee extends Arme {
+import java.io.Serializable;
+
+public class Epee extends Arme implements Serializable {
 
     public Epee(String nom, int damages) throws CreationException {
         super(nom, damages);

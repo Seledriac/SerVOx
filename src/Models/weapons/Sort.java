@@ -2,7 +2,9 @@ package Models.weapons;
 
 import Models.Exceptions.CreationException;
 
-public class Sort extends Arme {
+import java.io.Serializable;
+
+public class Sort extends Arme implements Serializable {
 
     protected int cout;
 

@@ -2,7 +2,9 @@ package Models.weapons;
 
 import Models.Exceptions.CreationException;
 
-public class Arc extends Arme {
+import java.io.Serializable;
+
+public class Arc extends Arme implements Serializable {
 
     private int fleches;
     private int fleches_max;

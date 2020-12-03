@@ -31,6 +31,7 @@ public class CharacterHandler {
 		String sql = " CREATE TABLE IF NOT EXISTS personnage ("
 				+ "	       id_perso INTEGER PRIMARY KEY AUTOINCREMENT,"
 				+ "        id_classe INTEGER NOT NULL,"
+				+ "	       id_histoire INTEGER NOT NULL,"
 				+ "	       nom VARCHAR(50) NOT NULL UNIQUE,"
 				+ "	       niveau INTEGER NOT NULL,"
 				+ "	       vie INTEGER NOT NULL,"
@@ -71,17 +72,18 @@ public class CharacterHandler {
 			id_classe = MAGE;
 		else
 			id_classe = CHASSEUR;
-		String sql = " INSERT INTO personnage (id_classe, nom, niveau, vie, mana)"
-		+ " VALUES (?, ?, 1, ?, ?);";
+		String sql = " REPLACE INTO personnage (id_classe, id_histoire, nom, niveau, vie, mana)"
+		+ " VALUES (?, ?, ?, 1, ?, ?);";
 		try {
 			PreparedStatement s = DataBase.getInstance().prepareStatement(sql);
 			s.setInt(1, id_classe);
-			s.setString(2, personnage.getNom());
-			s.setInt(3, personnage.getMax_health());
-			s.setInt(4, personnage.getMax_mana());
+			s.setInt(2, personnage.getId_histoire());
+			s.setString(3, personnage.getNom());
+			s.setInt(4, personnage.getMax_health());
+			s.setInt(5, personnage.getMax_mana());
 			s.executeUpdate();
 		} catch (SQLException e) {
-			System.exit(1);
+			e.printStackTrace();
 		}
 	}
 
@@ -170,7 +172,8 @@ public class CharacterHandler {
 								r.getInt("vie"),
 								r.getInt("mana"),
 								weapons,
-								sorts
+								sorts,
+								r.getInt("id_histoire")
 						));
 						break;
 					case MAGE:
@@ -180,7 +183,8 @@ public class CharacterHandler {
 								r.getInt("vie"),
 								r.getInt("mana"),
 								weapons,
-								sorts
+								sorts,
+								r.getInt("id_histoire")
 						));
 						break;
 					case CHASSEUR:
@@ -190,7 +194,8 @@ public class CharacterHandler {
 								r.getInt("vie"),
 								r.getInt("mana"),
 								weapons,
-								sorts
+								sorts,
+								r.getInt("id_histoire")
 						));
 						break;
 					default:
@@ -205,7 +210,7 @@ public class CharacterHandler {
 
 	public static void updateCharacter(Personnage personnage) {
 		String sql_pers = "UPDATE personnage"
-				+ " SET niveau=? , vie=?, mana=?"
+				+ " SET niveau=? , vie=?, mana=?, id_histoire=?"
 				+ " WHERE nom=?";
 		String sql_armes_insert = " REPLACE INTO arme_personnage (nom_arme, nom_perso, degats)"
 				+ " VALUES(?, ?, 0);";
@@ -217,7 +222,8 @@ public class CharacterHandler {
 			s_pers.setInt(1, personnage.getLevel());
 			s_pers.setInt(2, personnage.getMax_health());
 			s_pers.setInt(3, personnage.getMax_mana());
-			s_pers.setString(4, personnage.getNom());
+			s_pers.setInt(4, personnage.getId_histoire());
+			s_pers.setString(5, personnage.getNom());
 			s_pers.execute();
 			for(Arme arme : personnage.getWeapons()) {
 				PreparedStatement s_armes_insert = DataBase.getInstance().prepareStatement(sql_armes_insert);

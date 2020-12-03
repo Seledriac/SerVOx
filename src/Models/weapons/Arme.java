@@ -2,7 +2,9 @@ package Models.weapons;
 
 import Models.Exceptions.CreationException;
 
-public abstract class Arme {
+import java.io.Serializable;
+
+public abstract class Arme implements Serializable {
     protected String nom;
     protected int damages;
 

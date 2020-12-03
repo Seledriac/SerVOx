@@ -14,11 +14,14 @@ import Models.classes.Personnage;
 import Models.weapons.*;
 import ViewModels.Game;
 
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 public class GameManager {
 
+	private static final int HISTOIRE_GUERRIERS = 1;
+	private static final int HISTOIRE_MAGES = 2;
+	private static final int HISTOIRE_CHASSEURS = 3;
 	private Personnage perso;
 	private Personnage ennemi;
 	private int nbTours;
@@ -93,8 +96,11 @@ public class GameManager {
 	private ArrayList<Arc> arcs_basiques;
 	private ArrayList<Sort> sorts_basiques;
 	private ArrayList<SortUltime> sorts_ultimes;
+	private Guerrier[] histoire_guerriers;
+	private Mage[] histoire_mages;
+	private Chasseur[] histoire_chasseurs;
 
-	public void start() throws IOException, CreationException {
+	public void start() throws IOException, CreationException, GuerrierException, ClassNotFoundException, MageException, ChasseurException {
 		epees_basiques = new ArrayList<>();
 		epees_basiques.add(new Epee("Durandal", 10));
 		epees_basiques.add(new Epee("Sobek", 15));
@@ -115,6 +121,119 @@ public class GameManager {
 		sorts_ultimes.add(new SortUltime("Flamme Interdite", 20, 15));
 		sorts_ultimes.add(new SortUltime("Réveil des Arcanes", 50, 40));
 		sorts_ultimes.add(new SortUltime("Tempête", 30, 20));
+		// Création des guerriers pour l'histoire guerriers
+//		for(int i = 1; i <= 20; i++) {
+//			ArrayList<Arme> weapons_ennemi = new ArrayList<>();
+//			ArrayList<Sort> sorts_ennemi = new ArrayList<>();
+//			int vie_ennemi = 45 * i;
+//			int mana_ennemi = (int) (45 * i * 0.6);
+//			weapons_ennemi.add(epees_basiques.get((int) Math.floor(Math.random() * epees_basiques.size())));
+//			weapons_ennemi.add(boucliers_basiques.get((int) Math.floor(Math.random() * boucliers_basiques.size())));
+//			sorts_ennemi.add(sorts_basiques.get((int) Math.floor(Math.random() * sorts_basiques.size())));
+//			Guerrier guerrier_ennemi = new Guerrier(noms_guerriers_ennemis[(int) Math.floor(Math.random() * 20)],
+//					i,
+//					vie_ennemi,
+//					mana_ennemi,
+//					weapons_ennemi,
+//					sorts_ennemi,
+//					0
+//			);
+//			guerrier_ennemi.equiperArme(guerrier_ennemi.getWeapons().get(0));
+//			guerrier_ennemi.equiperBouclier((Bouclier) guerrier_ennemi.getWeapons().get(1));
+//			guerrier_ennemi.getArme_equipee().setDamages(guerrier_ennemi.getArme_equipee().getDamages() + 3 * i);
+//			guerrier_ennemi.getBouclierEquipe().setDefense(guerrier_ennemi.getBouclierEquipe().getDefense() + i);
+//			guerrier_ennemi.getSorts().get(0).setDamages(guerrier_ennemi.getSorts().get(0).getDamages() + 3 * i);
+//			System.out.println(guerrier_ennemi);
+//			FileOutputStream fos_guerriers = new FileOutputStream("src/Models/classes/ennemis/guerriers/guerrier_" + String.valueOf(i));
+//			ObjectOutputStream oos_guerriers = new ObjectOutputStream(fos_guerriers);
+//			oos_guerriers.writeObject(guerrier_ennemi);
+//		}
+//		System.out.println("\n");
+//		for(int i = 1; i <= 20; i++) {
+//			FileInputStream fis_guerriers = new FileInputStream("src/Models/classes/ennemis/guerriers/guerrier_" + String.valueOf(i));
+//			ObjectInputStream ois_guerriers = new ObjectInputStream(fis_guerriers);
+//			Guerrier guerrier_ennemi = (Guerrier)ois_guerriers.readObject();
+//			System.out.println(guerrier_ennemi);
+//		}
+		// Création des mages
+//		for(int i = 1; i <= 20; i++) {
+//			ArrayList<Arme> weapons_ennemi = new ArrayList<>();
+//			ArrayList<Sort> sorts_ennemi = new ArrayList<>();
+//			int vie_ennemi = 45 * i;
+//			int mana_ennemi = (int) (45 * i * 1.2);
+//			sorts_ennemi.add(sorts_basiques.get((int) Math.floor(Math.random() * sorts_basiques.size())));
+//			sorts_ennemi.add(sorts_ultimes.get((int) Math.floor(Math.random() * sorts_ultimes.size())));
+//			Mage mage_ennemi = new Mage(noms_mages_ennemis[(int) Math.floor(Math.random() * 20)],
+//					i,
+//					vie_ennemi,
+//					mana_ennemi,
+//					weapons_ennemi,
+//					sorts_ennemi,
+//					0
+//			);
+//			mage_ennemi.getSorts().get(0).setDamages(mage_ennemi.getSorts().get(0).getDamages() + 3 * i);
+//			mage_ennemi.getSorts().get(1).setDamages(mage_ennemi.getSorts().get(0).getDamages() + 3 * i);
+//			System.out.println(mage_ennemi);
+//			FileOutputStream fos_mages = new FileOutputStream("src/Models/classes/ennemis/mages/mage_" + String.valueOf(i));
+//			ObjectOutputStream oos_mages = new ObjectOutputStream(fos_mages);
+//			oos_mages.writeObject(mage_ennemi);
+//		}
+//		System.out.println("\n");
+//		for(int i = 1; i <= 20; i++) {
+//			FileInputStream fis_mages = new FileInputStream("src/Models/classes/ennemis/mages/mage_" + String.valueOf(i));
+//			ObjectInputStream ois_mages = new ObjectInputStream(fis_mages);
+//			Mage mage_ennemi = (Mage)ois_mages.readObject();
+//			System.out.println(mage_ennemi);
+//		}
+		// Création des chasseurs
+//		for(int i = 1; i <= 20; i++) {
+//			ArrayList<Arme> weapons_ennemi = new ArrayList<>();
+//			ArrayList<Sort> sorts_ennemi = new ArrayList<>();
+//			int vie_ennemi = 45 * i;
+//			int mana_ennemi = (int) (45 * i * 0.6);
+//			weapons_ennemi.add(arcs_basiques.get((int) Math.floor(Math.random() * arcs_basiques.size())));
+//			sorts_ennemi.add(sorts_basiques.get((int) Math.floor(Math.random() * sorts_basiques.size())));
+//			Chasseur chasseur_ennemi = new Chasseur(noms_chasseurs_ennemis[(int) Math.floor(Math.random() * 20)],
+//					i,
+//					vie_ennemi,
+//					mana_ennemi,
+//					weapons_ennemi,
+//					sorts_ennemi,
+//					0
+//			);
+//			chasseur_ennemi.equiperArme(chasseur_ennemi.getWeapons().get(0));
+//			chasseur_ennemi.getArme_equipee().setDamages(chasseur_ennemi.getArme_equipee().getDamages() + 3 * i);
+//			chasseur_ennemi.getSorts().get(0).setDamages(chasseur_ennemi.getSorts().get(0).getDamages() + 3 * i);
+//			System.out.println(chasseur_ennemi);
+//			FileOutputStream fos_chasseurs = new FileOutputStream("src/Models/classes/ennemis/chasseurs/chasseur_" + String.valueOf(i));
+//			ObjectOutputStream oos_chasseurs = new ObjectOutputStream(fos_chasseurs);
+//			oos_chasseurs.writeObject(chasseur_ennemi);
+//		}
+//		System.out.println("\n");
+//		for(int i = 1; i <= 20; i++) {
+//			FileInputStream fis_chasseurs = new FileInputStream("src/Models/classes/ennemis/chasseurs/chasseur_" + String.valueOf(i));
+//			ObjectInputStream ois_chasseurs = new ObjectInputStream(fis_chasseurs);
+//			Chasseur chasseur_ennemi = (Chasseur)ois_chasseurs.readObject();
+//			System.out.println(chasseur_ennemi);
+//		}
+		// Récupération des banques d'ennemis
+		histoire_guerriers = new Guerrier[20];
+		histoire_mages = new Mage[20];
+		histoire_chasseurs = new Chasseur[20];
+		for(int i = 0; i < 20; i++) {
+			FileInputStream fis_guerriers = new FileInputStream("src/Models/classes/ennemis/guerriers/guerrier_" + String.valueOf(i + 1));
+			ObjectInputStream ois_guerriers = new ObjectInputStream(fis_guerriers);
+			Guerrier guerrier_charge = (Guerrier) ois_guerriers.readObject();
+			histoire_guerriers[i] = guerrier_charge;
+			FileInputStream fis_mages = new FileInputStream("src/Models/classes/ennemis/mages/mage_" + String.valueOf(i + 1));
+			ObjectInputStream ois_mages = new ObjectInputStream(fis_mages);
+			Mage mage_charge = (Mage) ois_mages.readObject();
+			histoire_mages[i] = mage_charge;
+			FileInputStream fis_chasseurs = new FileInputStream("src/Models/classes/ennemis/chasseurs/chasseur_" + String.valueOf(i + 1));
+			ObjectInputStream ois_chasseurs = new ObjectInputStream(fis_chasseurs);
+			Chasseur chasseur_charge = (Chasseur) ois_chasseurs.readObject();
+			histoire_chasseurs[i] = chasseur_charge;
+		}
 		CharacterHandler.createTableCharacters();
 		WeaponHandler.createTableWeapons();
 		CharacterHandler.createTableArmePersonnage();
@@ -152,15 +271,15 @@ public class GameManager {
     public void CreateNewCharacter(String nom, int classe, ArrayList<Arme> weapons, ArrayList<Sort> sorts) throws MageException, CreationException, ChasseurException, GuerrierException, IOException {
 		switch (classe) {
 			case CharacterHandler.GUERRIER:
-				perso = new Guerrier(nom, 1, 50, 25, weapons, sorts);
+				perso = new Guerrier(nom, 1, 50, 25, weapons, sorts, 0);
 				perso.equiperArme(weapons.get(0));
 				((Guerrier)perso).equiperBouclier((Bouclier) perso.getWeapons().get(1));
 				break;
 			case CharacterHandler.MAGE:
-				perso = new Mage(nom, 1, 50, 60, weapons, sorts);
+				perso = new Mage(nom, 1, 50, 60, weapons, sorts, 0);
 				break;
 			case CharacterHandler.CHASSEUR:
-				perso = new Chasseur(nom, 1, 50, 25, weapons, sorts);
+				perso = new Chasseur(nom, 1, 50, 25, weapons, sorts, 0);
 				perso.equiperArme(weapons.get(0));
 				break;
 			default:
@@ -168,8 +287,18 @@ public class GameManager {
 		}
 		CharacterHandler.insertNewCharacter(perso);
 		CharacterHandler.updateCharacter(perso);
-		startGame();
+		loadChooseStoryView();
     }
+
+    public void loadChooseStoryView() throws IOException {
+		Main.sceneLoader.switchTo(SceneLoader.SCENE_CHOOSE_STORY);
+	}
+
+	public void setStory(int story_id) throws IOException {
+		perso.setId_histoire(story_id);
+		CharacterHandler.updateCharacter(perso);
+		startGame();
+	}
 
     public void chooseCharacter(Personnage perso) throws IOException {
 		this.perso = perso;
@@ -195,8 +324,10 @@ public class GameManager {
 	}
 
     public void startGame() throws IOException {
-
-		Main.sceneLoader.switchTo(SceneLoader.SCENE_NEXT_FIGHT);
+		if(perso.getId_histoire() != 0 && perso.getLevel() > 20) {
+			Main.sceneLoader.switchTo(SceneLoader.SCENE_FIN_HISTOIRE);
+		} else
+			Main.sceneLoader.switchTo(SceneLoader.SCENE_NEXT_FIGHT);
 	}
 
 	public int getNiveau() {
@@ -209,50 +340,69 @@ public class GameManager {
 	}
 
 	public void loadCombat() throws GuerrierException, CreationException, MageException, ChasseurException, IOException {
-		ArrayList<Arme> weapons_ennemi = new ArrayList<>();
-		ArrayList<Sort> sorts_ennemi = new ArrayList<>();
-		int vie_ennemi = (int)(45 * perso.getLevel());
-		int mana_ennemi = (int)(45 *  perso.getLevel() * 0.6);
-		int i = (int)Math.floor(Math.random() * 3) + 1;
-		switch(i) {
-			case CharacterHandler.GUERRIER:
-				weapons_ennemi.add(epees_basiques.get((int)Math.floor(Math.random() * epees_basiques.size())));
-				weapons_ennemi.add(boucliers_basiques.get((int)Math.floor(Math.random() * boucliers_basiques.size())));
-				sorts_ennemi.add(sorts_basiques.get((int)Math.floor(Math.random() * sorts_basiques.size())));
-				ennemi = new Guerrier(noms_guerriers_ennemis[(int)Math.floor(Math.random() * 20)],
-						perso.getLevel(),
-						vie_ennemi,
-						mana_ennemi,
-						weapons_ennemi,
-						sorts_ennemi
-						);
-				ennemi.equiperArme(ennemi.getWeapons().get(0));
-				((Guerrier)ennemi).equiperBouclier((Bouclier) ennemi.getWeapons().get(1));
-				break;
-			case CharacterHandler.MAGE:
-				mana_ennemi = (int)(mana_ennemi * 2);
-				sorts_ennemi.add(sorts_basiques.get((int)Math.floor(Math.random() * sorts_basiques.size())));
-				sorts_ennemi.add(sorts_ultimes.get((int)Math.floor(Math.random() * sorts_ultimes.size())));
-				ennemi = new Mage(noms_mages_ennemis[(int)Math.floor(Math.random() * 20)],
-						perso.getLevel(),
-						vie_ennemi,
-						mana_ennemi,
-						weapons_ennemi,
-						sorts_ennemi
-				);
-				break;
-			case CharacterHandler.CHASSEUR:
-				weapons_ennemi.add(arcs_basiques.get((int)Math.floor(Math.random() * arcs_basiques.size())));
-				sorts_ennemi.add(sorts_basiques.get((int)Math.floor(Math.random() * sorts_basiques.size())));
-				ennemi = new Chasseur(noms_guerriers_ennemis[(int)Math.floor(Math.random() * 20)],
-						perso.getLevel(),
-						vie_ennemi,
-						mana_ennemi,
-						weapons_ennemi,
-						sorts_ennemi
-				);
-				ennemi.equiperArme(ennemi.getWeapons().get(0));
-				break;
+		if(perso.getId_histoire() == 0) {
+			ArrayList<Arme> weapons_ennemi = new ArrayList<>();
+			ArrayList<Sort> sorts_ennemi = new ArrayList<>();
+			int vie_ennemi = (int) (45 * perso.getLevel());
+			int mana_ennemi = (int) (45 * perso.getLevel() * 0.6);
+			int i = (int) Math.floor(Math.random() * 3) + 1;
+			switch (i) {
+				case CharacterHandler.GUERRIER:
+					weapons_ennemi.add(epees_basiques.get((int) Math.floor(Math.random() * epees_basiques.size())));
+					weapons_ennemi.add(boucliers_basiques.get((int) Math.floor(Math.random() * boucliers_basiques.size())));
+					sorts_ennemi.add(sorts_basiques.get((int) Math.floor(Math.random() * sorts_basiques.size())));
+					ennemi = new Guerrier(noms_guerriers_ennemis[(int) Math.floor(Math.random() * 20)],
+							perso.getLevel(),
+							vie_ennemi,
+							mana_ennemi,
+							weapons_ennemi,
+							sorts_ennemi,
+							0
+					);
+					ennemi.equiperArme(ennemi.getWeapons().get(0));
+					((Guerrier) ennemi).equiperBouclier((Bouclier) ennemi.getWeapons().get(1));
+					break;
+				case CharacterHandler.MAGE:
+					mana_ennemi = (int) (mana_ennemi * 2);
+					sorts_ennemi.add(sorts_basiques.get((int) Math.floor(Math.random() * sorts_basiques.size())));
+					sorts_ennemi.add(sorts_ultimes.get((int) Math.floor(Math.random() * sorts_ultimes.size())));
+					ennemi = new Mage(noms_mages_ennemis[(int) Math.floor(Math.random() * 20)],
+							perso.getLevel(),
+							vie_ennemi,
+							mana_ennemi,
+							weapons_ennemi,
+							sorts_ennemi,
+							0
+					);
+					break;
+				case CharacterHandler.CHASSEUR:
+					weapons_ennemi.add(arcs_basiques.get((int) Math.floor(Math.random() * arcs_basiques.size())));
+					sorts_ennemi.add(sorts_basiques.get((int) Math.floor(Math.random() * sorts_basiques.size())));
+					ennemi = new Chasseur(noms_guerriers_ennemis[(int) Math.floor(Math.random() * 20)],
+							perso.getLevel(),
+							vie_ennemi,
+							mana_ennemi,
+							weapons_ennemi,
+							sorts_ennemi,
+							0
+					);
+					ennemi.equiperArme(ennemi.getWeapons().get(0));
+					break;
+			}
+		} else {
+			switch(perso.getId_histoire()) {
+				case HISTOIRE_GUERRIERS:
+					ennemi = histoire_guerriers[perso.getLevel() - 1];
+					break;
+				case HISTOIRE_MAGES:
+					ennemi = histoire_mages[perso.getLevel() - 1];
+					break;
+				case HISTOIRE_CHASSEURS:
+					ennemi = histoire_chasseurs[perso.getLevel() - 1];
+					break;
+				default:
+					break;
+			}
 		}
 		nbTours = 0;
 		Main.sceneLoader.switchTo(SceneLoader.SCENE_GAME);
@@ -354,4 +504,5 @@ public class GameManager {
 	public void finDeTourJoueur(Game game) throws IOException, InterruptedException {
 		attaqueEnnemi(game);
 	}
+	
 }

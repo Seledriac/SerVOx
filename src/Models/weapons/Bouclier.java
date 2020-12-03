@@ -2,7 +2,9 @@ package Models.weapons;
 
 import Models.Exceptions.CreationException;
 
-public class Bouclier extends Arme {
+import java.io.Serializable;
+
+public class Bouclier extends Arme implements Serializable {
 
     private int defense;
 
