@@ -30,22 +30,10 @@ public class Guerrier extends Personnage {
 
     @Override
     public void prendreDesDegats(int degats) {
-        Bouclier bouclier = null;
-        for(Arme arme : weapons) {
-            if(arme instanceof Bouclier)
-                bouclier = (Bouclier)arme;
-        }
-        if(degats - bouclier.getDefense() > 0)
-            health -= (degats - bouclier.getDefense());
-    }
-
-    public void cac_guerrier(Personnage ennemi){
-        Epee epee = null;
-        for(Arme arme : weapons) {
-            if(arme instanceof Epee)
-                epee = (Epee)arme;
-        }
-        ennemi.prendreDesDegats(epee.getDamages());
+        if(degats - bouclier_equipe.getDefense() > 0)
+            health -= (degats - bouclier_equipe.getDefense());
+        if(health < 0)
+            health = 0;
     }
 
 }

@@ -79,19 +79,20 @@ public class NewGuerrier implements Initializable {
 
     @FXML
     protected void loadGame(MouseEvent mouseEvent) throws IOException, CreationException, GuerrierException, ChasseurException, MageException {
-        if(num_epee != 0 && nom.getCharacters().toString() != "") {
+        String nom_perso = nom.getCharacters().toString();
+        if(num_epee != 0 && nom_perso != "" && nom_perso.length() <= 10) {
             ArrayList<Arme> weapons = new ArrayList<>();
             ArrayList<Sort> sorts = new ArrayList<>();
             switch (num_epee) {
                 case 1:
                     weapons.add(new Epee("Durandal", 10));
                     weapons.add(new Bouclier("Bouclier en Fer", 0, 5));
-                    sorts.add(new Sort("Démacia", 10, 3));
+                    sorts.add(new Sort("Démacia", 20, 3));
                     break;
                 case 2:
                     weapons.add(new Epee("Sobek", 15));
                     weapons.add(new Bouclier("Bouclier en Fer", 0, 5));
-                    sorts.add(new Sort("Démacia", 10, 3));
+                    sorts.add(new Sort("Démacia", 20, 3));
                     break;
                 case 3:
                     weapons.add(new Epee("Excalibur", 20));
@@ -100,7 +101,7 @@ public class NewGuerrier implements Initializable {
                 default:
                     break;
             }
-            Main.gameManager.CreateNewCharacter(nom.getCharacters().toString(), CharacterHandler.GUERRIER, weapons, sorts);
+            Main.gameManager.CreateNewCharacter(nom_perso, CharacterHandler.GUERRIER, weapons, sorts);
         }
     }
 

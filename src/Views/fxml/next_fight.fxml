@@ -16,7 +16,7 @@
             <Image url="@../Images/fond_next_fight.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="btn_jouer" onMouseClicked="#lancerNiveau" layoutX="500.0" layoutY="289.0" mnemonicParsing="false" text="Jouer">
+      <Button onMouseClicked="#lancerNiveau" layoutX="500.0" layoutY="289.0" mnemonicParsing="false" text="Jouer">
          <font>
             <Font name="Berlin Sans FB" size="80.0" />
          </font>

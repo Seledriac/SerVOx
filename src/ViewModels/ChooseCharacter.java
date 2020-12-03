@@ -96,16 +96,20 @@ public class ChooseCharacter implements Initializable {
     protected void previous(MouseEvent mouseEvent) {
         if(i > 0) {
             i--;
-            afficherPerso();
+        } else {
+            i = persos.size() - 1;
         }
+        afficherPerso();
     }
 
     @FXML
     protected void next(MouseEvent mouseEvent) {
         if(i < persos.size() - 1) {
             i++;
-            afficherPerso();
+        } else {
+            i = 0;
         }
+        afficherPerso();
     }
 
     @FXML

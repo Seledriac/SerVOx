@@ -17,17 +17,12 @@ import java.util.ResourceBundle;
 public class NextFight implements Initializable {
 
     @FXML
-    protected Button btn_jouer;
-    @FXML
     protected Text texte_niveau;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         int niveau = Main.gameManager.getNiveau();
         texte_niveau.setText("Niveau " + String.valueOf(niveau));
-        if(niveau > 1) {
-            btn_jouer.setText("Continuer");
-        }
     }
 
     @FXML

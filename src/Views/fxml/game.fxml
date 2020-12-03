@@ -3,6 +3,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -47,7 +48,7 @@
             <Image url="@../Images/illustration_guerrier.jpg" />
          </image>
       </ImageView>
-      <Text fx:id="nom_perso" fill="WHITE" layoutX="197.0" layoutY="59.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.0" text="Lancelot">
+      <Text fx:id="nom_perso" fill="WHITE" layoutX="197.0" layoutY="59.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.0" text="Perso">
          <font>
             <Font name="Berlin Sans FB" size="40.0" />
          </font>
@@ -92,16 +93,16 @@
             <Font name="Berlin Sans FB" size="30.0" />
          </font>
       </Text>
-      <ComboBox fx:id="attaques" layoutX="445.0" layoutY="165.0" prefWidth="150.0" />
-      <Text fx:id="degats_attaque" fill="WHITE" layoutX="442.0" layoutY="320.0" stroke="BLACK" strokeType="OUTSIDE" text="Dégats : 10">
+      <ComboBox fx:id="attaques" layoutX="445.0" layoutY="43.0" prefWidth="150.0" />
+      <Text fx:id="degats_attaque" fill="WHITE" layoutX="442.0" layoutY="135.0" stroke="BLACK" strokeType="OUTSIDE" text="Dégats : 10">
          <font>
             <Font name="Berlin Sans FB" size="35.0" />
          </font></Text>
-      <Text fx:id="cout_attaque" fill="WHITE" layoutX="462.0" layoutY="360.0" stroke="BLACK" strokeType="OUTSIDE" text="Coût : 0">
+      <Text fx:id="cout_attaque" fill="WHITE" layoutX="445.0" layoutY="173.0" stroke="BLACK" strokeType="OUTSIDE" text="Coût : 0">
          <font>
             <Font name="Berlin Sans FB" size="35.0" />
          </font></Text>
-      <Button onMouseClicked="#attaquer" layoutX="417.0" layoutY="390.0" mnemonicParsing="false" text="Attaquer">
+      <Button fx:id="btn_attaquer" layoutX="417.0" layoutY="188.0" mnemonicParsing="false" onMouseClicked="#attaquer" text="Attaquer">
           <font>
               <Font name="Berlin Sans FB" size="80.0" />
           </font>
@@ -115,7 +116,7 @@
               <Cursor fx:constant="HAND" />
           </cursor>
       </Button>
-      <Button onMouseClicked="#passerLeTour" layoutX="444.0" layoutY="487.0" mnemonicParsing="false" text="Passer son tour">
+      <Button fx:id="btn_passer" layoutX="444.0" layoutY="274.0" mnemonicParsing="false" onMouseClicked="#passerLeTour" text="Passer son tour">
           <font>
               <Font name="Berlin Sans FB" size="20.0" />
           </font>
@@ -126,5 +127,10 @@
               <Cursor fx:constant="HAND" />
           </cursor>
       </Button>
+      <TextArea id="logs" fx:id="logs" editable="false" layoutX="405.0" layoutY="330.0" prefHeight="365.0" prefWidth="230.0" wrapText="true">
+         <font>
+            <Font name="Berlin Sans FB" size="20.0" />
+         </font>
+      </TextArea>
    </children>
 </Pane>

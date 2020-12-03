@@ -1,0 +1,7 @@
+#logs {
+    -fx-text-fill: #eaeaea;
+}
+
+#logs .content {
+    -fx-background-color: black;
+}

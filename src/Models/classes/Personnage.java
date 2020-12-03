@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public abstract class Personnage {
     protected String nom;
-    protected int health, mana, level;
+    protected int health, max_health, mana, max_mana, level;
     protected ArrayList<Arme> weapons = new ArrayList<Arme>();
     protected ArrayList<Sort> sorts = new ArrayList<Sort>();
     protected Arme arme_equipee;
@@ -17,9 +17,11 @@ public abstract class Personnage {
         try {
             if (health > 0 && mana >= 0 && level > 0) {
                 this.nom = nom;
-                this.health = health;
                 this.level = level;
+                this.health = health;
+                this.max_health = health;
                 this.mana = mana;
+                this.max_mana = mana;
                 this.weapons = weapons;
                 this.sorts = sorts;
             } else
@@ -34,6 +36,10 @@ public abstract class Personnage {
             arme_equipee = arme;
     }
 
+    public Arme getArme_equipee() {
+        return arme_equipee;
+    }
+
     public String getNom() {
         return nom;
     }
@@ -46,10 +52,30 @@ public abstract class Personnage {
         return health;
     }
 
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
     public void prendreDesDegats(int degats) {
         health -= degats;
         if(health < 0)
             health = 0;
+    }
+
+    public int getMax_health() {
+        return max_health;
+    }
+
+    public void setMax_health(int max_health) {
+        this.max_health = max_health;
+    }
+
+    public int getMax_mana() {
+        return max_mana;
+    }
+
+    public void setMax_mana(int max_mana) {
+        this.max_mana = max_mana;
     }
 
     public int getMana() {
@@ -84,12 +110,37 @@ public abstract class Personnage {
         this.sorts = sorts;
     }
 
-    public void sort_basique(Personnage ennemi) {
-        if(mana > sorts.get(0).getCout()) {
-            ennemi.prendreDesDegats(sorts.get(0).getDamages());
-            mana -= sorts.get(0).getCout();
+    public void cac(Personnage ennemi, boolean critique){
+        if(arme_equipee != null) {
+            if(critique)
+                ennemi.prendreDesDegats(arme_equipee.getDamages() * 2);
+            else
+                ennemi.prendreDesDegats(arme_equipee.getDamages());
+        }
+    }
+
+    public void sort(Personnage ennemi, Sort sort, boolean critique) {
+        if(mana > sort.getCout()) {
+            if(critique)
+                ennemi.prendreDesDegats(sort.getDamages() * 2);
+            else
+                ennemi.prendreDesDegats(sort.getDamages());
+            mana -= sort.getCout();
         } else {
-            System.out.println("Pas assez de mana");
+            if(!(this instanceof Mage)) {
+                if(this instanceof Chasseur) {
+                    if(((Arc)(this.getArme_equipee())).getFleches() > 0)
+                        cac(ennemi, critique);
+                } else
+                    cac(ennemi, critique);
+            } else {
+                for(Sort autre_sort : sorts) {
+                    if(autre_sort.getCout() < mana) {
+                        sort(ennemi, autre_sort, critique);
+                    }
+                }
+            }
+
         }
     }
 

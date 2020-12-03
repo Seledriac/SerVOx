@@ -77,8 +77,8 @@ public class CharacterHandler {
 			PreparedStatement s = DataBase.getInstance().prepareStatement(sql);
 			s.setInt(1, id_classe);
 			s.setString(2, personnage.getNom());
-			s.setInt(3, personnage.getHealth());
-			s.setInt(4, personnage.getMana());
+			s.setInt(3, personnage.getMax_health());
+			s.setInt(4, personnage.getMax_mana());
 			s.executeUpdate();
 		} catch (SQLException e) {
 			System.exit(1);
@@ -148,7 +148,7 @@ public class CharacterHandler {
 		}
 		return set_res;
 	}
-	
+
 	public static ArrayList<Personnage> listCharacters(int limit) {
 		String sql = "SELECT * FROM  personnage ORDER BY niveau DESC LIMIT ?;";
 		ArrayList<Personnage> personnages = new ArrayList<>();
@@ -215,8 +215,8 @@ public class CharacterHandler {
 		try {
 			PreparedStatement s_pers = DataBase.getInstance().prepareStatement(sql_pers);
 			s_pers.setInt(1, personnage.getLevel());
-			s_pers.setInt(2, personnage.getHealth());
-			s_pers.setInt(3, personnage.getMana());
+			s_pers.setInt(2, personnage.getMax_health());
+			s_pers.setInt(3, personnage.getMax_mana());
 			s_pers.setString(4, personnage.getNom());
 			s_pers.execute();
 			for(Arme arme : personnage.getWeapons()) {

@@ -22,12 +22,17 @@ public class Chasseur extends Personnage {
         }
     }
 
-    public void cac_chasseur(Personnage ennemi) {
-        if(((Arc)weapons.get(0)).getFleches() > 0) {
-            ennemi.prendreDesDegats(weapons.get(0).getDamages());
-            ((Arc)weapons.get(0)).setFleches(((Arc)weapons.get(0)).getFleches() - 1);
+    @Override
+    public void cac(Personnage ennemi, boolean critique) {
+        if(((Arc)arme_equipee).getFleches() > 0) {
+            if(critique)
+                ennemi.prendreDesDegats(arme_equipee.getDamages() * 2);
+            else
+                ennemi.prendreDesDegats(arme_equipee.getDamages());
+            ((Arc)arme_equipee).setFleches(((Arc)arme_equipee).getFleches() - 1);
         } else {
-            System.out.println("Plus de flèche");
+            if(sorts.size() > 0)
+                sort(ennemi, sorts.get(0), critique);
         }
     }
 

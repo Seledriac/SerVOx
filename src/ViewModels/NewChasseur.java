@@ -78,24 +78,25 @@ public class NewChasseur implements Initializable {
 
     @FXML
     protected void loadGame(MouseEvent mouseEvent) throws IOException, CreationException, GuerrierException, ChasseurException, MageException {
-        if(num_arc != 0 && nom.getCharacters().toString() != "") {
+        String nom_perso = nom.getCharacters().toString();
+        if(num_arc != 0 && nom_perso != "" && nom_perso.length() <= 10) {
             ArrayList<Arme> weapons = new ArrayList<>();
             ArrayList<Sort> sorts = new ArrayList<>();
             switch (num_arc) {
                 case 1:
-                    weapons.add(new Arc("Thor'Idal", 10, 20));
+                    weapons.add(new Arc("Thor'Idal", 10, 8));
                     break;
                 case 2:
-                    weapons.add(new Arc("Atiesh", 15, 10));
+                    weapons.add(new Arc("Atiesh", 15, 5));
                     break;
                 case 3:
-                    weapons.add(new Arc("Val'Anyr", 20, 15));
+                    weapons.add(new Arc("Val'Anyr", 20, 3));
                     break;
                 default:
                     break;
             }
-            sorts.add(new Sort("Traque", 10, 10));
-            Main.gameManager.CreateNewCharacter(nom.getCharacters().toString(), CharacterHandler.CHASSEUR, weapons, sorts);
+            sorts.add(new Sort("Traque", 20, 10));
+            Main.gameManager.CreateNewCharacter(nom_perso, CharacterHandler.CHASSEUR, weapons, sorts);
         }
     }
 

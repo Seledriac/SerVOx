@@ -106,6 +106,7 @@ public class SceneLoader {
 
 	private void makeSceneGame(Stage stage) throws IOException {
 		Scene scene_game = makeBasicScene("/Views/fxml/game.fxml");
+		scene_game.getStylesheets().add(getClass().getResource("/Views/css/game.css").toExternalForm());
 		stage.setScene(scene_game);
 	}
 

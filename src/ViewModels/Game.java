@@ -4,13 +4,16 @@ import Application.Main;
 import Models.classes.Guerrier;
 import Models.classes.Mage;
 import Models.classes.Personnage;
+import Models.weapons.Arc;
 import Models.weapons.Arme;
 import Models.weapons.Bouclier;
 import Models.weapons.Sort;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -25,6 +28,12 @@ import java.util.Set;
 
 public class Game implements Initializable {
 
+    @FXML
+    protected TextArea logs;
+    @FXML
+    protected Button btn_attaquer;
+    @FXML
+    protected Button btn_passer;
     @FXML
     protected Text nom_perso;
     @FXML
@@ -93,32 +102,36 @@ public class Game implements Initializable {
         classe_niveau_ennemi.setText(classe_ennemi + " : Niveau " + String.valueOf(ennemi.getLevel()));
         vie_ennemi.setText("Vie : " + String.valueOf(ennemi.getHealth()));
         mana_ennemi.setText("Mana : " + String.valueOf(ennemi.getMana()));
-        Set<Arme> set = new HashSet<>();
-        set.addAll(perso.getWeapons());
-        set.addAll(perso.getSorts());
-        liste_attaques = new ArrayList<>(set);
+        liste_attaques = new ArrayList<>();
+        if(perso.getArme_equipee() != null)
+            liste_attaques.add(perso.getArme_equipee());
+        liste_attaques.addAll(perso.getSorts());
+
         liste_attaques.removeIf(arme -> arme instanceof Bouclier);
         for(Arme arme : liste_attaques) {
-            attaques.getItems().add(arme.getNom());
+            if(arme instanceof Sort)
+                attaques.getItems().add(arme.getNom());
+            else
+                attaques.getItems().add("Attaque basique");
         }
         attaques.getSelectionModel().selectFirst();
         attaques.setOnAction((e) -> {
             updateAttaque(e);
         });
         updateAttaque(null);
+        addLogs("Début du combat");
     }
 
-    private void updateAttaque(ActionEvent e) {
-        Arme arme = null;
-        if(e == null) {
-             arme = liste_attaques.get(0);
-        } else {
-             arme = liste_attaques.get(attaques.getSelectionModel().getSelectedIndex());
-        }
+    public void updateAttaque(ActionEvent e) {
+        Arme arme = liste_attaques.get(attaques.getSelectionModel().getSelectedIndex());
         degats_attaque.setText("Dégâts : " + String.valueOf(arme.getDamages()));
-        cout_attaque.setText("Coût : 0");
-        if(arme instanceof Sort)
-            cout_attaque.setText("Coût : " + String.valueOf(((Sort)arme).getCout()));
+        cout_attaque.setText("");
+        if(arme instanceof Sort) {
+            cout_attaque.setText("Coût : " + String.valueOf(((Sort) arme).getCout()));
+        }
+        else if(arme instanceof Arc) {
+            cout_attaque.setText("Flèches : " + String.valueOf(((Arc) arme).getFleches()));
+        }
     }
 
     @FXML
@@ -127,10 +140,35 @@ public class Game implements Initializable {
     }
 
     @FXML
-    protected void attaquer(MouseEvent mouseEvent) {
+    protected void attaquer(MouseEvent mouseEvent) throws IOException, InterruptedException {
+        btn_attaquer.setDisable(true);
+        btn_passer.setDisable(true);
+        Main.gameManager.attaqueJoueur(this, liste_attaques.get(attaques.getSelectionModel().getSelectedIndex()));
+        updateAttaque(null);
     }
 
     @FXML
-    protected void passerLeTour(MouseEvent mouseEvent) {
+    protected void passerLeTour(MouseEvent mouseEvent) throws IOException, InterruptedException {
+        btn_attaquer.setDisable(true);
+        btn_passer.setDisable(true);
+        Main.gameManager.finDeTourJoueur(this);
     }
+
+    public void updateStats() {
+        vie.setText("Vie : " + String.valueOf(perso.getHealth()));
+        mana.setText("Mana : " + String.valueOf(perso.getMana()));
+        vie_ennemi.setText("Vie : " + String.valueOf(ennemi.getHealth()));
+        mana_ennemi.setText("Mana : " + String.valueOf(ennemi.getMana()));
+    }
+
+    public void reprendreCombat() {
+        updateStats();
+        btn_attaquer.setDisable(false);
+        btn_passer.setDisable(false);
+    }
+
+    public void addLogs(String texte) {
+        logs.setText(texte + "\n" + logs.getText());
+    }
+
 }

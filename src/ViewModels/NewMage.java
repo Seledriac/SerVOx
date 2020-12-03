@@ -78,10 +78,11 @@ public class NewMage implements Initializable {
 
     @FXML
     protected void loadGame(MouseEvent mouseEvent) throws IOException, CreationException, GuerrierException, ChasseurException, MageException {
-        if(num_sort != 0 && nom.getCharacters().toString() != "") {
+        String nom_perso = nom.getCharacters().toString();
+        if(num_sort != 0 && nom_perso != "" && nom_perso.length() <= 10) {
             ArrayList<Arme> weapons = new ArrayList<>();
             ArrayList<Sort> sorts = new ArrayList<>();
-            sorts.add(new Sort("Petite Boule de Feu", 10, 5));
+            sorts.add(new Sort("Petite Boule de Feu", 15, 5));
             switch (num_sort) {
                 case 1:
                     sorts.add(new SortUltime("Flamme Interdite", 20, 15));
@@ -95,7 +96,7 @@ public class NewMage implements Initializable {
                 default:
                     break;
             }
-            Main.gameManager.CreateNewCharacter(nom.getCharacters().toString(), CharacterHandler.MAGE, weapons, sorts);
+            Main.gameManager.CreateNewCharacter(nom_perso, CharacterHandler.MAGE, weapons, sorts);
         }
     }
 

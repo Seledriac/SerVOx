@@ -22,13 +22,4 @@ public class Mage extends Personnage {
         }
     }
 
-    public void sort_ultime(Personnage ennemi) {
-        if(mana > sorts.get(1).getCout()) {
-            ennemi.prendreDesDegats(sorts.get(1).getDamages());
-            mana -= sorts.get(1).getCout();
-        } else {
-            System.out.println("Pas assez de mana");
-        }
-    }
-
 }
