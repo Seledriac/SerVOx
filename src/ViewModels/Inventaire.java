@@ -99,14 +99,16 @@ public class Inventaire implements Initializable {
                 if(item instanceof Arc) {
                     munitions_max_item.setText("Flèches : " + ((Arc)item).getMunitions_max());
                 } else if(item instanceof Arbalete) {
-                    munitions_max_item.setText("Carreaux : " + ((Arc)item).getMunitions_max());
+                    munitions_max_item.setText("Carreaux : " + ((Arbalete)item).getMunitions_max());
                 }
             } else if(item instanceof SortOffensif) {
                 cout_mana_item.setText("Coût : " + ((SortOffensif)item).getCout_mana());
                 munitions_max_item.setText("");
             }
         } else {
+            degats_item.setText("");
             cout_mana_item.setText("Coût : " + ((Sort)item).getCout_mana());
+            munitions_max_item.setText("");
         }
     }
 

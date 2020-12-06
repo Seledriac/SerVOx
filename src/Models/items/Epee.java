@@ -8,13 +8,6 @@ public class Epee extends Cac implements Serializable {
 
     public Epee(Accessibilite accessibilite, String nom, int cout_argent, int degats) throws CreationException {
         super(accessibilite, nom, cout_argent, degats);
-        accessibilite = Accessibilite.GUERRIERS;
-        try {
-            if(degats <= 0)
-                throw new CreationException();
-        } catch(CreationException e) {
-            e.printStackTrace();
-        }
     }
 
     public Epee(Epee epee) throws CreationException {

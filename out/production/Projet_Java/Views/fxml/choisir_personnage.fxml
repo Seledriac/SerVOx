@@ -79,7 +79,7 @@
             <Font name="Berlin Sans FB" size="40.0" />
          </font>
       </Text>
-      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#retour_choose_menu" text="Retour" visible="false">
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#retour_choose_menu" text="Retour">
          <font>
             <Font name="Berlin Sans FB" size="35.0" />
          </font>

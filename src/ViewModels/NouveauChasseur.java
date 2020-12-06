@@ -81,13 +81,13 @@ public class NouveauChasseur implements Initializable {
             ArrayList<Item> items = new ArrayList<>();
             switch(num_arc) {
                 case 1:
-                    items.add(new Arc(Accessibilite.CHASSEURS, "Thor'Idal", 0, 10, 10));
+                    items.add(new Arc(Accessibilite.CHASSEURS, "Thor'Idal", 0, 20, 10));
                     break;
                 case 2:
-                    items.add(new Arc(Accessibilite.CHASSEURS, "Atiesh", 0, 15, 7));
+                    items.add(new Arc(Accessibilite.CHASSEURS, "Atiesh", 0, 25, 7));
                     break;
                 case 3:
-                    items.add(new Arc(Accessibilite.CHASSEURS, "Val'Anyr", 0, 20, 5));
+                    items.add(new Arc(Accessibilite.CHASSEURS, "Val'Anyr", 0, 30, 5));
                     break;
                 default:
                     break;

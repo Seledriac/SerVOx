@@ -103,9 +103,9 @@ public class GameManager {
 		epees_basiques.add(new Epee(Accessibilite.GUERRIERS, "Sobek", 100, 15));
 		epees_basiques.add(new Epee(Accessibilite.GUERRIERS, "Excalibur", 100, 20));
 		arcs_basiques = new ArrayList<>();
-		arcs_basiques.add(new Arc(Accessibilite.CHASSEURS, "Thor'Idal", 100, 10, 20));
-		arcs_basiques.add(new Arc(Accessibilite.CHASSEURS, "Atiesh", 100, 15, 15));
-		arcs_basiques.add(new Arc(Accessibilite.CHASSEURS, "Val'Anyr", 100, 20, 10));
+		arcs_basiques.add(new Arc(Accessibilite.CHASSEURS, "Thor'Idal", 100, 15, 10));
+		arcs_basiques.add(new Arc(Accessibilite.CHASSEURS, "Atiesh", 100, 17, 7));
+		arcs_basiques.add(new Arc(Accessibilite.CHASSEURS, "Val'Anyr", 100, 20, 5));
 		sorts_mage_starter = new ArrayList<>();
 		sorts_mage_starter.add(new SortOffensif(Accessibilite.MAGES, "Flamme Interdite", 100, 30, 20));
 		sorts_mage_starter.add(new SortOffensif(Accessibilite.MAGES,"Réveil des Arcanes", 100, 50, 40));
@@ -125,8 +125,10 @@ public class GameManager {
 		items_du_jeu.addAll(sorts_mage_basiques);
 		items_du_jeu.addAll(sorts_chasseur_basiques);
 		items_du_jeu.add(new Marteau(Accessibilite.GUERRIERS, "Mjöllnir", 200, 30));
-		items_du_jeu.add(new Arbalete(Accessibilite.CHASSEURS, "Thyrse", 200, 30, 15));
+		items_du_jeu.add(new Arbalete(Accessibilite.CHASSEURS, "Thyrse", 200, 35, 15));
 		items_du_jeu.add(new Epee(Accessibilite.GUERRIERS, "Lame Tonerre", 200, 25));
+		items_du_jeu.add(new Boost(Accessibilite.MAGES, "Boost", 100, 20));
+		items_du_jeu.add(new Affaiblissement(Accessibilite.MAGES, "Affaiblissement", 100, 20));
 //		 Création des guerriers pour l'histoire guerriers
 //		for(int i = 1; i <= noms_guerriers_ennemis.length; i++) {
 //			ArrayList<Item> items_ennemi = new ArrayList<>();
@@ -319,7 +321,7 @@ public class GameManager {
 	}
 
     public void startGame() throws IOException {
-		if(perso.getHistoire() != Histoire.RANDOM && perso.getNiveau() > 20) {
+		if(perso.getNiveau() > 20) {
 			Main.sceneLoader.switchTo(SceneLoader.SCENE_FIN_HISTOIRE);
 		} else
 			Main.sceneLoader.switchTo(SceneLoader.SCENE_PROCHAIN_COMBAT);
@@ -379,6 +381,11 @@ public class GameManager {
 							null
 					);
 					break;
+			}
+			for(Item item : ennemi.getItems()) {
+				if(item instanceof Arme) {
+					((Arme)item).setDegats(((Arme) item).getDegats() + perso.getNiveau() * 2);
+				}
 			}
 		} else {
 			switch(perso.getHistoire()) {

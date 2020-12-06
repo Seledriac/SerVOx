@@ -71,7 +71,11 @@ public class ItemsDBHandler {
                 }
                 else {
                     s_insert.setInt(3, NatureItem.SORT.getValue());
-//                  s_insert.setInt(4, /* TypeSort */);
+                    if(item instanceof Boost) {
+                        s_insert.setInt(4, TypeSort.BOOST.getValue());
+                    } else if(item instanceof Affaiblissement) {
+                        s_insert.setInt(4, TypeSort.AFFAIBLISSEMENT.getValue());
+                    }
                     s_insert.setInt(6, java.sql.Types.INTEGER);
                     s_insert.setInt(7, ((Sort)item).getCout_mana());
                     s_insert.setNull(8, java.sql.Types.INTEGER);
@@ -153,7 +157,7 @@ public class ItemsDBHandler {
                                         Accessibilite.valueOf(r.getInt("accessibilite")),
                                         r.getString("nom"),
                                         r.getInt("cout_argent"),
-                                        r.getInt("degats") + personnage.getNiveau() * 2,
+                                        r.getInt("degats") + personnage.getNiveau() * 3,
                                         r.getInt("nb_munitions")
                                 ));
                                 break;
@@ -166,12 +170,37 @@ public class ItemsDBHandler {
                                         r.getInt("cout_mana")
                                 ));
                                 break;
+                            case ARBALETE:
+                                items.add(new Arbalete(
+                                        Accessibilite.valueOf(r.getInt("accessibilite")),
+                                        r.getString("nom"),
+                                        r.getInt("cout_argent"),
+                                        r.getInt("degats") + personnage.getNiveau() * 3,
+                                        r.getInt("nb_munitions")
+                                ));
+                                break;
                             default:
                                 break;
                         }
                         break;
                     case SORT:
-                        switch(TypeArme.valueOf(r.getInt("type"))) {
+                        switch(TypeSort.valueOf(r.getInt("type"))) {
+                            case BOOST:
+                                items.add(new Boost(
+                                        Accessibilite.valueOf(r.getInt("accessibilite")),
+                                        r.getString("nom"),
+                                        r.getInt("cout_argent"),
+                                        r.getInt("cout_mana")
+                                ));
+                                break;
+                            case AFFAIBLISSEMENT:
+                                items.add(new Affaiblissement(
+                                        Accessibilite.valueOf(r.getInt("accessibilite")),
+                                        r.getString("nom"),
+                                        r.getInt("cout_argent"),
+                                        r.getInt("cout_mana")
+                                ));
+                                break;
                             default:
                                 break;
                         }

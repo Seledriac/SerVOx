@@ -9,4 +9,8 @@ public class Arbalete extends ArmeAMunitions implements Serializable {
         super(accessibilite, nom, cout_argent, degats, nb_munitions);
     }
 
+    public Arbalete(Arbalete arbalete) throws CreationException {
+        super(arbalete.accessibilite, arbalete.nom, arbalete.cout_argent, arbalete.degats, arbalete.munitions_max);
+    }
+    
 }

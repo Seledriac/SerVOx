@@ -5,7 +5,8 @@ import java.util.Map;
 
 public enum TypeSort {
 
-    ;
+    BOOST(1),
+    AFFAIBLISSEMENT(2);
 
     private int value;
     private static Map map = new HashMap<>();

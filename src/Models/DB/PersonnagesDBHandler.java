@@ -131,12 +131,37 @@ public class PersonnagesDBHandler {
                                         r.getInt("cout_mana")
                                 ));
                                 break;
+                            case ARBALETE:
+                                items.add(new Arbalete(
+                                        Accessibilite.valueOf(r.getInt("accessibilite")),
+                                        r.getString("nom_item"),
+                                        r.getInt("cout_argent"),
+                                        r.getInt("degats"),
+                                        r.getInt("nb_munitions")
+                                ));
+                                break;
                             default:
                                 break;
                         }
                         break;
                     case SORT:
-                        switch(TypeArme.valueOf(r.getInt("type"))) {
+                        switch(TypeSort.valueOf(r.getInt("type"))) {
+                            case BOOST:
+                                items.add(new Boost(
+                                        Accessibilite.valueOf(r.getInt("accessibilite")),
+                                        r.getString("nom_item"),
+                                        r.getInt("cout_argent"),
+                                        r.getInt("cout_mana")
+                                ));
+                                break;
+                            case AFFAIBLISSEMENT:
+                                items.add(new Affaiblissement(
+                                        Accessibilite.valueOf(r.getInt("accessibilite")),
+                                        r.getString("nom_item"),
+                                        r.getInt("cout_argent"),
+                                        r.getInt("cout_mana")
+                                ));
+                                break;
                             default:
                                 break;
                         }
@@ -229,23 +254,27 @@ public class PersonnagesDBHandler {
                 s_items_insert.execute();
                 PreparedStatement s_items_update = DataBase.getInstance().prepareStatement(sql_items_update);
                 if (item instanceof Bouclier) {
-                    s_items_update.setInt(1, ((Bouclier) item).getDefense());
+                    s_items_update.setInt(1, ((Bouclier)item).getDefense());
                 } else if (item instanceof Arme) {
-                    s_items_update.setInt(1, ((Arme) item).getDegats());
+                    s_items_update.setInt(1, ((Arme)item).getDegats());
                 } else {
                     s_items_update.setNull(1, java.sql.Types.INTEGER);
                 }
                 if (item instanceof SortOffensif || item instanceof Sort) {
                     if (item instanceof SortOffensif) {
-                        s_items_update.setInt(2, ((SortOffensif) item).getCout_mana());
+                        s_items_update.setInt(2, ((SortOffensif)item).getCout_mana());
                     } else {
-                        s_items_update.setInt(2, ((Sort) item).getCout_mana());
+                        s_items_update.setInt(2, ((Sort)item).getCout_mana());
                     }
                 } else {
                     s_items_update.setNull(2, java.sql.Types.INTEGER);
                 }
                 if (item instanceof ArmeAMunitions) {
-                    s_items_update.setInt(3, ((Arc) item).getMunitions_max());
+                    if(item instanceof Arc) {
+                        s_items_update.setInt(3, ((Arc)item).getMunitions_max());
+                    } else if(item instanceof Arbalete) {
+                        s_items_update.setInt(3, ((Arbalete)item).getMunitions_max());
+                    }
                 } else {
                     s_items_update.setNull(3, java.sql.Types.INTEGER);
                 }
