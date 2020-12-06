@@ -1,53 +1,36 @@
 package Models.classes;
 
-import Models.weapons.*;
+import Models.items.*;
 import Models.Exceptions.CreationException;
+import ViewModels.MainMenu;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
 public abstract class Personnage implements Serializable {
-    protected String nom;
-    protected int health, max_health, mana, max_mana, level, id_histoire;
-    protected ArrayList<Arme> weapons = new ArrayList<Arme>();
-    protected ArrayList<Sort> sorts = new ArrayList<Sort>();
-    protected Arme arme_equipee;
-    protected Bouclier bouclier_equipe;
 
-    public Personnage(String nom, int level, int health, int mana, ArrayList<Arme> weapons, ArrayList<Sort> sorts, int id_histoire) throws CreationException {
+    protected String nom;
+    protected int argent, niveau, vie, vie_max, mana, mana_max;
+    protected ArrayList<Item> items;
+    protected Histoire histoire;
+
+    public Personnage(String nom, int argent, int niveau, int vie, int mana, ArrayList<Item> items, Histoire histoire) throws CreationException {
         try {
-            if (health > 0 && mana >= 0 && level > 0) {
+            if (vie > 0 && mana >= 0 && niveau > 0 && argent >= 0) {
                 this.nom = nom;
-                this.level = level;
-                this.health = health;
-                this.max_health = health;
+                this.niveau = niveau;
+                this.vie = vie;
+                this.vie_max = vie;
                 this.mana = mana;
-                this.max_mana = mana;
-                this.weapons = weapons;
-                this.sorts = sorts;
-                this.id_histoire = id_histoire;
+                this.mana_max = mana;
+                this.items = items;
+                this.histoire = histoire;
+                this.argent = argent;
             } else
                 throw new CreationException();
         } catch (CreationException e) {
             e.printStackTrace();
         }
-    }
-
-    public int getId_histoire() {
-        return id_histoire;
-    }
-
-    public void setId_histoire(int id_histoire) {
-        this.id_histoire = id_histoire;
-    }
-
-    public void equiperArme(Arme arme) {
-        if(arme instanceof Epee || arme instanceof Arc)
-            arme_equipee = arme;
-    }
-
-    public Arme getArme_equipee() {
-        return arme_equipee;
     }
 
     public String getNom() {
@@ -58,34 +41,62 @@ public abstract class Personnage implements Serializable {
         this.nom = nom;
     }
 
-    public int getHealth() {
-        return health;
+    public int getArgent() {
+        return argent;
     }
 
-    public void setHealth(int health) {
-        this.health = health;
+    public void setArgent(int argent) {
+        this.argent = argent;
+    }
+
+    public boolean acheter(Item item) {
+        if(argent >= item.getCout_argent()) {
+            argent -= item.getCout_argent();
+            items.add(item);
+            return true;
+        }
+        return false;
+    }
+
+    public int getNiveau() {
+        return niveau;
+    }
+
+    public void setNiveau(int niveau) {
+        this.niveau = niveau;
+    }
+
+    public int getVie() {
+        return vie;
+    }
+
+    public void setVie(int vie) {
+        this.vie = vie;
     }
 
     public void prendreDesDegats(int degats) {
-        health -= degats;
-        if(health < 0)
-            health = 0;
+        Bouclier bouclier_equipe = null;
+        if(this instanceof Guerrier) {
+            bouclier_equipe = ((Guerrier)this).getBouclier_equipe();
+        } else if(this instanceof Chasseur) {
+            bouclier_equipe = ((Chasseur)this).getBouclier_equipe();
+        }
+        if(bouclier_equipe != null) {
+            if (degats - bouclier_equipe.getDefense() > 0)
+                vie -= (degats - bouclier_equipe.getDefense());
+        } else {
+            vie -= degats;
+        }
+        if (vie < 0)
+            vie = 0;
     }
 
-    public int getMax_health() {
-        return max_health;
+    public int getVie_max() {
+        return vie_max;
     }
 
-    public void setMax_health(int max_health) {
-        this.max_health = max_health;
-    }
-
-    public int getMax_mana() {
-        return max_mana;
-    }
-
-    public void setMax_mana(int max_mana) {
-        this.max_mana = max_mana;
+    public void setVie_max(int vie_max) {
+        this.vie_max = vie_max;
     }
 
     public int getMana() {
@@ -96,61 +107,63 @@ public abstract class Personnage implements Serializable {
         this.mana = mana;
     }
 
-    public int getLevel() {
-        return level;
+    public int getMana_max() {
+        return mana_max;
     }
 
-    public void setLevel(int level) {
-        this.level = level;
+    public void setMana_max(int mana_max) {
+        this.mana_max = mana_max;
     }
 
-    public ArrayList<Arme> getWeapons() {
-        return weapons;
+    public ArrayList<Item> getItems() {
+        return items;
     }
 
-    public void setWeapons(ArrayList<Arme> weapons) {
-        this.weapons = weapons;
+    public void setItems(ArrayList<Item> items) {
+        this.items = items;
     }
 
-    public ArrayList<Sort> getSorts() {
-        return sorts;
+    public Histoire getHistoire() {
+        return histoire;
     }
 
-    public void setSorts(ArrayList<Sort> sorts) {
-        this.sorts = sorts;
+    public void setHistoire(Histoire histoire) {
+        this.histoire = histoire;
     }
 
-    public void cac(Personnage ennemi, boolean critique){
-        if(arme_equipee != null) {
+    public void lancerSort(Sort sort, Personnage ennemi, boolean critique) {
+        sort.action(this, ennemi, critique);
+    }
+
+    public void attaqueSort(SortOffensif sort, Personnage ennemi,  boolean critique) {
+        boolean reussite = false;
+        if(mana > sort.getCout_mana()) {
             if(critique)
-                ennemi.prendreDesDegats(arme_equipee.getDamages() * 2);
+                ennemi.prendreDesDegats(sort.getDegats() * 2);
             else
-                ennemi.prendreDesDegats(arme_equipee.getDamages());
-        }
-    }
-
-    public void sort(Personnage ennemi, Sort sort, boolean critique) {
-        if(mana > sort.getCout()) {
-            if(critique)
-                ennemi.prendreDesDegats(sort.getDamages() * 2);
-            else
-                ennemi.prendreDesDegats(sort.getDamages());
-            mana -= sort.getCout();
+                ennemi.prendreDesDegats(sort.getDegats());
+            mana -= sort.getCout_mana();
         } else {
-            if(!(this instanceof Mage)) {
-                if(this instanceof Chasseur) {
-                    if(((Arc)(this.getArme_equipee())).getFleches() > 0)
-                        cac(ennemi, critique);
-                } else
-                    cac(ennemi, critique);
-            } else {
-                for(Sort autre_sort : sorts) {
-                    if(autre_sort.getCout() < mana) {
-                        sort(ennemi, autre_sort, critique);
+            for(Item item : items) {
+                if(item instanceof SortOffensif) {
+                    if(((SortOffensif)item).getCout_mana() < mana) {
+                        attaqueSort((SortOffensif)item, ennemi, critique);
+                        reussite = true;
+                        break;
                     }
                 }
             }
-
+            if(!reussite) {
+                if(this instanceof Guerrier) {
+                    if(((Guerrier)this).getArme_equipee() instanceof Cac || ((Guerrier)this).getArme_equipee() instanceof ArmeAMunitions) {
+                        ((Guerrier)this).attaqueArme(ennemi, critique);
+                    }
+                } else if(this instanceof Chasseur){
+                    if(((Chasseur)this).getArme_equipee() instanceof Cac || ((Chasseur)this).getArme_equipee() instanceof ArmeAMunitions) {
+                        ((Chasseur)this).attaqueArme(ennemi, critique);
+                    }
+                }
+            }
         }
     }
 
@@ -163,7 +176,7 @@ public abstract class Personnage implements Serializable {
             classe = "Mage";
         else
             classe = "Chasseur";
-        return classe + " => Nom : " + nom + "; Niveau : " + level + "; Vie : " + health + "; Mana : " + mana + "; Armes : " + weapons + "; Sorts : " + sorts;
+        return classe + " => Nom : " + nom + "; Niveau : " + niveau + "; Vie : " + vie + "; Mana : " + mana + "; Items : " + items + "; Argent : " + argent + "€";
     }
 
 }

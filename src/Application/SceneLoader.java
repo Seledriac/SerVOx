@@ -9,18 +9,20 @@ import javafx.stage.Stage;
 
 public class SceneLoader {
 
-    private Stage stage;
+	private Stage stage;
 	public static final int SCENE_MAIN_MENU = 0;
 	public static final int SCENE_MAIN_MENU_CHOOSE = 1;
-	public static final int SCENE_NEW_CHARACTER = 2;
-	public static final int SCENE_NEW_GUERRIER = 3;
-	public static final int SCENE_NEW_MAGE = 4;
-	public static final int SCENE_NEW_CHASSEUR = 5;
-	public static final int SCENE_CHOOSE_CHARACTER = 6;
+	public static final int SCENE_NOUVEAU_PERSONNAGE = 2;
+	public static final int SCENE_NOUVEAU_GUERRIER = 3;
+	public static final int SCENE_NOUVEAU_MAGE = 4;
+	public static final int SCENE_NOUVEAU_CHASSEUR = 5;
+	public static final int SCENE_CHOISIR_PERSONNAGE = 6;
 	public static final int SCENE_GAME = 7;
-	public static final int SCENE_NEXT_FIGHT = 8;
-	public static final int SCENE_CHOOSE_STORY = 9;
+	public static final int SCENE_PROCHAIN_COMBAT = 8;
+	public static final int SCENE_CHOISIR_HISTOIRE = 9;
 	public static final int SCENE_FIN_HISTOIRE = 10;
+	public static final int SCENE_BOUTIQUE = 11;
+	public static final int SCENE_INVENTAIRE = 12;
 
 	public SceneLoader(Stage stage) {
 		this.stage = stage;
@@ -34,32 +36,38 @@ public class SceneLoader {
 			case SCENE_MAIN_MENU_CHOOSE:
 				makeSceneMainMenuChoose(stage);
 				break;
-			case SCENE_NEW_CHARACTER:
-				makeSceneNewCharacter(stage);
+			case SCENE_NOUVEAU_PERSONNAGE:
+				makeSceneNouveauPersonnage(stage);
 				break;
-			case SCENE_NEW_GUERRIER:
-				makeSceneNewGuerrier(stage);
+			case SCENE_NOUVEAU_GUERRIER:
+				makeSceneNouveauGuerrier(stage);
 				break;
-			case SCENE_NEW_MAGE:
-				makeSceneNewMage(stage);
+			case SCENE_NOUVEAU_MAGE:
+				makeSceneNouveauMage(stage);
 				break;
-			case SCENE_NEW_CHASSEUR:
-				makeSceneNewChasseur(stage);
+			case SCENE_NOUVEAU_CHASSEUR:
+				makeSceneNouveauChasseur(stage);
 				break;
-			case SCENE_CHOOSE_CHARACTER:
-				makeSceneChooseCharacter(stage);
+			case SCENE_CHOISIR_PERSONNAGE:
+				makeSceneChoisirPersonnage(stage);
 				break;
 			case SCENE_GAME:
 				makeSceneGame(stage);
 				break;
-			case SCENE_NEXT_FIGHT:
-				makeSceneNextFight(stage);
+			case SCENE_PROCHAIN_COMBAT:
+				makeSceneProchainCombat(stage);
 				break;
-			case SCENE_CHOOSE_STORY:
-				makeSceneChooseStory(stage);
+			case SCENE_CHOISIR_HISTOIRE:
+				makeSceneChoisirHistoire(stage);
 				break;
 			case SCENE_FIN_HISTOIRE:
 				makeSceneFinHistoire(stage);
+				break;
+			case SCENE_BOUTIQUE:
+				makeSceneBoutique(stage);
+				break;
+			case SCENE_INVENTAIRE:
+				makeSceneInventaire(stage);
 				break;
 			default:
 				break;
@@ -84,32 +92,32 @@ public class SceneLoader {
 		stage.setScene(scene_main_menu_choose);
 	}
 
-	private void makeSceneNewCharacter(Stage stage) throws IOException {
-		Scene scene_new_character = makeBasicScene("/Views/fxml/new_character.fxml");
-		stage.setScene(scene_new_character);
+	private void makeSceneNouveauPersonnage(Stage stage) throws IOException {
+		Scene scene_nouveau_personnage = makeBasicScene("/Views/fxml/nouveau_personnage.fxml");
+		stage.setScene(scene_nouveau_personnage);
 	}
 
-	private void makeSceneNewGuerrier(Stage stage) throws IOException {
-		Scene scene_new_guerrier = makeBasicScene("/Views/fxml/new_guerrier.fxml");
-		scene_new_guerrier.getStylesheets().add(getClass().getResource("/Views/css/new_guerrier.css").toExternalForm());
-		stage.setScene(scene_new_guerrier);
+	private void makeSceneNouveauGuerrier(Stage stage) throws IOException {
+		Scene scene_nouveau_guerrier = makeBasicScene("/Views/fxml/nouveau_guerrier.fxml");
+		scene_nouveau_guerrier.getStylesheets().add(getClass().getResource("/Views/css/nouveau_guerrier.css").toExternalForm());
+		stage.setScene(scene_nouveau_guerrier);
 	}
 
-	private void makeSceneNewMage(Stage stage) throws IOException {
-		Scene scene_new_mage = makeBasicScene("/Views/fxml/new_mage.fxml");
-		scene_new_mage.getStylesheets().add(getClass().getResource("/Views/css/new_mage.css").toExternalForm());
-		stage.setScene(scene_new_mage);
+	private void makeSceneNouveauMage(Stage stage) throws IOException {
+		Scene scene_nouveau_mage = makeBasicScene("/Views/fxml/nouveau_mage.fxml");
+		scene_nouveau_mage.getStylesheets().add(getClass().getResource("/Views/css/nouveau_mage.css").toExternalForm());
+		stage.setScene(scene_nouveau_mage);
 	}
 
-	private void makeSceneNewChasseur(Stage stage) throws IOException {
-		Scene scene_new_chasseur = makeBasicScene("/Views/fxml/new_chasseur.fxml");
-		scene_new_chasseur.getStylesheets().add(getClass().getResource("/Views/css/new_chasseur.css").toExternalForm());
-		stage.setScene(scene_new_chasseur);
+	private void makeSceneNouveauChasseur(Stage stage) throws IOException {
+		Scene scene_nouveau_chasseur = makeBasicScene("/Views/fxml/nouveau_chasseur.fxml");
+		scene_nouveau_chasseur.getStylesheets().add(getClass().getResource("/Views/css/nouveau_chasseur.css").toExternalForm());
+		stage.setScene(scene_nouveau_chasseur);
 	}
 
-	private void makeSceneChooseCharacter(Stage stage) throws IOException {
-		Scene scene_choose_character = makeBasicScene("/Views/fxml/choose_character.fxml");
-		stage.setScene(scene_choose_character);
+	private void makeSceneChoisirPersonnage(Stage stage) throws IOException {
+		Scene scene_choisir_personnage = makeBasicScene("/Views/fxml/choisir_personnage.fxml");
+		stage.setScene(scene_choisir_personnage);
 	}
 
 	private void makeSceneGame(Stage stage) throws IOException {
@@ -118,20 +126,30 @@ public class SceneLoader {
 		stage.setScene(scene_game);
 	}
 
-	private void makeSceneNextFight(Stage stage) throws IOException {
-		Scene scene_next_fight = makeBasicScene("/Views/fxml/next_fight.fxml");
-		stage.setScene(scene_next_fight);
+	private void makeSceneProchainCombat(Stage stage) throws IOException {
+		Scene scene_prochain_combat = makeBasicScene("/Views/fxml/prochain_combat.fxml");
+		stage.setScene(scene_prochain_combat);
 	}
 
-	private void makeSceneChooseStory(Stage stage) throws IOException {
-		Scene scene_choose_story = makeBasicScene("/Views/fxml/choose_story.fxml");
-		scene_choose_story.getStylesheets().add(getClass().getResource("/Views/css/choose_story.css").toExternalForm());
-		stage.setScene(scene_choose_story);
+	private void makeSceneChoisirHistoire(Stage stage) throws IOException {
+		Scene scene_choisir_histoire = makeBasicScene("/Views/fxml/choisir_histoire.fxml");
+		scene_choisir_histoire.getStylesheets().add(getClass().getResource("/Views/css/choisir_histoire.css").toExternalForm());
+		stage.setScene(scene_choisir_histoire);
 	}
 
 	private void makeSceneFinHistoire(Stage stage) throws IOException {
-		Scene scene_fin_story = makeBasicScene("/Views/fxml/end_story.fxml");
-		stage.setScene(scene_fin_story);
+		Scene scene_fin_histoire = makeBasicScene("/Views/fxml/fin_histoire.fxml");
+		stage.setScene(scene_fin_histoire);
+	}
+
+	private void makeSceneBoutique(Stage stage) throws IOException {
+		Scene scene_boutique = makeBasicScene("/Views/fxml/boutique.fxml");
+		stage.setScene(scene_boutique);
+	}
+
+	private void makeSceneInventaire(Stage stage) throws IOException {
+		Scene scene_inventaire = makeBasicScene("/Views/fxml/inventaire.fxml");
+		stage.setScene(scene_inventaire);
 	}
 
 }

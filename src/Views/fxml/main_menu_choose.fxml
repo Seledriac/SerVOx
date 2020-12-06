@@ -10,7 +10,7 @@
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewModels.MainMenuChoose">
     <children>
         <ImageView fx:id="main_menu_choose_background" fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true" />
-        <Button layoutX="333.0" layoutY="200.0" mnemonicParsing="false" onMouseClicked="#load_new_character_view" prefHeight="120.0" prefWidth="615.0" text="Créer Un Nouveau Personnage">
+        <Button layoutX="333.0" layoutY="200.0" mnemonicParsing="false" onMouseClicked="#load_nouveau_personnage_view" prefHeight="120.0" prefWidth="615.0" text="Créer Un Nouveau Personnage">
             <font>
                 <Font name="Berlin Sans FB" size="43.0" />
             </font>
@@ -21,7 +21,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
         </Button>
-        <Button layoutX="333.0" layoutY="400.0" mnemonicParsing="false" onMouseClicked="#load_choose_character_view" prefHeight="120.0" prefWidth="615.0" text="Charger Un Personnage Existant">
+        <Button layoutX="333.0" layoutY="400.0" mnemonicParsing="false" onMouseClicked="#load_choisir_personnage_view" prefHeight="120.0" prefWidth="615.0" text="Choisir Un Personnage Existant">
             <font>
                 <Font name="Berlin Sans FB" size="41.0" />
             </font>

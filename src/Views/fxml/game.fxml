@@ -93,16 +93,16 @@
             <Font name="Berlin Sans FB" size="30.0" />
          </font>
       </Text>
-      <ComboBox fx:id="attaques" layoutX="445.0" layoutY="43.0" prefWidth="150.0" />
-      <Text fx:id="degats_attaque" fill="WHITE" layoutX="442.0" layoutY="135.0" stroke="BLACK" strokeType="OUTSIDE" text="Dégats : 10">
+      <ComboBox fx:id="actions" layoutX="445.0" layoutY="43.0" prefWidth="150.0" />
+      <Text fx:id="degats_action" fill="WHITE" layoutX="442.0" layoutY="135.0" stroke="BLACK" strokeType="OUTSIDE" text="Dégats : 10">
          <font>
             <Font name="Berlin Sans FB" size="35.0" />
          </font></Text>
-      <Text fx:id="cout_attaque" fill="WHITE" layoutX="445.0" layoutY="173.0" stroke="BLACK" strokeType="OUTSIDE" text="Coût : 0">
+      <Text fx:id="cout_action" fill="WHITE" layoutX="445.0" layoutY="173.0" stroke="BLACK" strokeType="OUTSIDE" text="Coût : 0">
          <font>
             <Font name="Berlin Sans FB" size="35.0" />
          </font></Text>
-      <Button fx:id="btn_attaquer" layoutX="417.0" layoutY="188.0" mnemonicParsing="false" onMouseClicked="#attaquer" text="Attaquer">
+      <Button fx:id="btn_action" layoutX="437.0" layoutY="188.0" mnemonicParsing="false" onMouseClicked="#action" text="Utiliser">
           <font>
               <Font name="Berlin Sans FB" size="80.0" />
           </font>

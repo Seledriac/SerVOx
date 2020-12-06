@@ -1,15 +1,8 @@
 package Application;
 
-import Models.Exceptions.*;
-import Models.classes.Chasseur;
-import Models.classes.Guerrier;
-import Models.classes.Mage;
-import Models.weapons.*;
 import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-
-import java.util.ArrayList;
 
 public class Main extends Application {
 	

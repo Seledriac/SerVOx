@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewModels.ChoisirHistoire">
+   <children>
+      <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/fond_choose_story.jpg" />
+         </image>
+      </ImageView>
+      <Text fill="WHITE" layoutX="60.0" layoutY="125.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="3.0" text="Choisissez le type des personnages que vous voulez affronter">
+         <font>
+            <Font name="Berlin Sans FB" size="47.0" />
+         </font></Text>
+      <Button id="guerriers" fx:id="guerriers" layoutX="50.0" layoutY="270.0" mnemonicParsing="false" onMouseClicked="#select_guerriers" prefHeight="360.0" prefWidth="250.0" />
+      <Button id="mages" fx:id="mages" layoutX="360.0" layoutY="270.0" mnemonicParsing="false" onMouseClicked="#select_mages" prefHeight="360.0" prefWidth="250.0" />
+      <Button id="chasseurs" fx:id="chasseurs" layoutX="670.0" layoutY="270.0" mnemonicParsing="false" onMouseClicked="#select_chasseurs" prefHeight="360.0" prefWidth="250.0" />
+      <Button id="random" fx:id="random" layoutX="980.0" layoutY="270.0" mnemonicParsing="false" onMouseClicked="#select_random" prefHeight="360.0" prefWidth="250.0" />
+      <Text fill="WHITE" layoutX="101.0" layoutY="239.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.0" text="Guerriers">
+         <font>
+            <Font name="Berlin Sans FB" size="40.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="432.0" layoutY="238.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.0" text="Mages">
+         <font>
+            <Font name="Berlin Sans FB" size="40.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="716.0" layoutY="239.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.0" text="Chasseurs">
+         <font>
+            <Font name="Berlin Sans FB" size="40.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="1029.0" layoutY="238.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.0" text="Aléatoire">
+         <font>
+            <Font name="Berlin Sans FB" size="40.0" />
+         </font>
+      </Text>
+   </children>
+</Pane>

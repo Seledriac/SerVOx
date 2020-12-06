@@ -40,13 +40,13 @@ public class MainMenuChoose implements Initializable {
     }
 
     @FXML
-    protected void load_new_character_view(MouseEvent mouseEvent) throws IOException {
-        Main.gameManager.loadNewCharacterView();
+    protected void load_nouveau_personnage_view(MouseEvent mouseEvent) throws IOException {
+        Main.gameManager.loadNouveauPersonnageView();
     }
 
     @FXML
-    protected void load_choose_character_view(MouseEvent mouseEvent) throws IOException{
-        Main.gameManager.loadChooseCharacterView();
+    protected void load_choisir_personnage_view(MouseEvent mouseEvent) throws IOException{
+        Main.gameManager.loadChoisirPersonnageView();
     }
 
 

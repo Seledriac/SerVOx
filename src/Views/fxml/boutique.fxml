@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewModels.Boutique">
+    <children>
+        <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../Images/fond_boutique.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fx:id="image_item" fitHeight="400.0" fitWidth="400.0" layoutX="290.0" layoutY="216.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../Images/Mjöllnir.jpg" />
+            </image>
+        </ImageView>
+        <Text fx:id="nom_item" fill="#e4e4e4" layoutX="786.0" layoutY="293.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.0" text="Mjölnir">
+            <font>
+                <Font name="Berlin Sans FB" size="50.0" />
+            </font>
+        </Text>
+        <Text fx:id="cout_item" fill="#ffffffe5" layoutX="742.0" layoutY="432.0" stroke="#1b1b1b" strokeType="OUTSIDE" text="Coût : 500 €">
+            <font>
+                <Font name="Berlin Sans FB" size="45.0" />
+            </font>
+        </Text>
+        <Button fx:id="btn_acheter" layoutX="762.0" layoutY="492.0" mnemonicParsing="false" onMouseClicked="#achat" text="Acheter">
+            <font>
+                <Font name="Berlin Sans FB" size="41.0" />
+            </font>
+            <effect>
+                <ColorAdjust brightness="-0.6" contrast="1.0" hue="0.24" saturation="1.0" />
+            </effect>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <Button fx:id="previous_btn" layoutX="64.0" layoutY="364.0" mnemonicParsing="false" onMouseClicked="#previous" text="Précédent">
+            <font>
+                <Font name="Berlin Sans FB" size="30.0" />
+            </font>
+            <effect>
+                <ColorAdjust brightness="-0.4" contrast="1.0" hue="0.25" saturation="0.4" />
+            </effect>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <Button fx:id="next_btn" layoutX="1040.0" layoutY="364.0" mnemonicParsing="false" onMouseClicked="#next" text="Suivant">
+            <font>
+                <Font name="Berlin Sans FB" size="30.0" />
+            </font>
+            <effect>
+                <ColorAdjust brightness="-0.4" contrast="1.0" hue="0.25" saturation="0.4" />
+            </effect>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <Text fx:id="type_item" fill="#ff9900" layoutX="784.0" layoutY="351.0" stroke="BLACK" strokeType="OUTSIDE" text="Marteau">
+            <font>
+                <Font name="Berlin Sans FB" size="40.0" />
+            </font>
+        </Text>
+        <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#retour_prochain_combat" text="Retour">
+            <font>
+                <Font name="Berlin Sans FB" size="35.0" />
+            </font>
+            <effect>
+                <ColorAdjust brightness="-0.6" contrast="0.65" hue="-1.0" saturation="0.17" />
+            </effect>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <Text fx:id="titre" fill="WHITE" layoutX="436.0" layoutY="127.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="3.0" text="Boutique">
+            <font>
+                <Font name="Berlin Sans FB" size="55.0" />
+            </font>
+        </Text>
+      <Text fx:id="argent_perso" fill="WHITE" layoutX="1026.0" layoutY="666.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.0" text="Argent : 0€">
+         <font>
+            <Font name="Berlin Sans FB" size="35.0" />
+         </font>
+      </Text>
+    </children>
+</Pane>

@@ -2,38 +2,93 @@ package Models.classes;
 
 import Models.Exceptions.CreationException;
 import Models.Exceptions.ChasseurException;
-import Models.weapons.Arc;
-import Models.weapons.Arme;
-import Models.weapons.Sort;
+import Models.items.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Chasseur extends Personnage implements Serializable {
 
-    public Chasseur(String nom, int level, int health, int mana, ArrayList<Arme> weapons, ArrayList<Sort> sorts, int id_histoire) throws CreationException, ChasseurException {
-        super(nom, level, health, mana, weapons, sorts, id_histoire);
+    private Arme arme_equipee;
+    private Bouclier bouclier_equipe;
+
+    public Chasseur(String nom, int argent, int level, int vie, int mana, ArrayList<Item> items, Histoire histoire) throws CreationException, ChasseurException {
+        super(nom, argent, level, vie, mana, items, histoire);
         try {
-            for(Arme arme : weapons) {
-                if(!(arme instanceof Arc))
+            for(Item item : items) {
+                if(!(item.getAccessibilite() == Accessibilite.CHASSEURS)
+                        && !(item.getAccessibilite() == Accessibilite.GUERRIERS_CHASSEURS)
+                        && !(item.getAccessibilite() == Accessibilite.CHASSEURS_MAGES)
+                        && !(item.getAccessibilite() == Accessibilite.TOUS)
+                )
                     throw new ChasseurException();
+                if(item instanceof Cac || item instanceof ArmeAMunitions)
+                    equiperArme((Arme)item);
+                if(item instanceof Bouclier)
+                    equiperBouclier((Bouclier) item);
             }
         } catch (ChasseurException e) {
             e.printStackTrace();
         }
     }
 
-    @Override
-    public void cac(Personnage ennemi, boolean critique) {
-        if(((Arc)arme_equipee).getFleches() > 0) {
-            if(critique)
-                ennemi.prendreDesDegats(arme_equipee.getDamages() * 2);
-            else
-                ennemi.prendreDesDegats(arme_equipee.getDamages());
-            ((Arc)arme_equipee).setFleches(((Arc)arme_equipee).getFleches() - 1);
+    public Arme getArme_equipee() {
+        return arme_equipee;
+    }
+
+    public Bouclier getBouclier_equipe() {
+        return bouclier_equipe;
+    }
+
+    public void equiperArme(Arme arme_equipee) {
+        if(arme_equipee.getAccessibilite() == Accessibilite.CHASSEURS
+                || arme_equipee.getAccessibilite() == Accessibilite.GUERRIERS_CHASSEURS
+                || arme_equipee.getAccessibilite() == Accessibilite.CHASSEURS_MAGES
+                || arme_equipee.getAccessibilite() == Accessibilite.TOUS
+        )
+            this.arme_equipee = arme_equipee;
+    }
+
+    public void equiperBouclier(Bouclier bouclier_equipe) {
+        if(bouclier_equipe.getAccessibilite() == Accessibilite.CHASSEURS
+                || bouclier_equipe.getAccessibilite() == Accessibilite.GUERRIERS_CHASSEURS
+                || bouclier_equipe.getAccessibilite() == Accessibilite.CHASSEURS_MAGES
+                || bouclier_equipe.getAccessibilite() == Accessibilite.TOUS
+        )
+            this.bouclier_equipe = bouclier_equipe;
+
+    }
+
+    public void attaqueArme(Personnage ennemi, boolean critique){
+        if(arme_equipee != null) {
+            if(arme_equipee instanceof Cac) {
+                if (critique)
+                    ennemi.prendreDesDegats(arme_equipee.getDegats() * 2);
+                else
+                    ennemi.prendreDesDegats(arme_equipee.getDegats());
+            } else {
+                if(((ArmeAMunitions)arme_equipee).getMunitions() > 0) {
+                    if (critique)
+                        ennemi.prendreDesDegats(arme_equipee.getDegats() * 2);
+                    else
+                        ennemi.prendreDesDegats(arme_equipee.getDegats());
+                    ((ArmeAMunitions)arme_equipee).setMunitions(((ArmeAMunitions)arme_equipee).getMunitions() - 1);
+                } else {
+                    for(Item item : items) {
+                        if(item instanceof SortOffensif && ((SortOffensif) item).getCout_mana() <= mana) {
+                            attaqueSort((SortOffensif)item, ennemi, critique);
+                            break;
+                        }
+                    }
+                }
+            }
         } else {
-            if(sorts.size() > 0)
-                sort(ennemi, sorts.get(0), critique);
+            for(Item item : items) {
+                if(item instanceof SortOffensif && ((SortOffensif) item).getCout_mana() <= mana) {
+                    attaqueSort((SortOffensif)item, ennemi, critique);
+                    break;
+                }
+            }
         }
     }
 
