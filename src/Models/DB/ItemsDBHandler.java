@@ -151,7 +151,7 @@ public class ItemsDBHandler {
                             case ARC:
                                 items.add(new Arc(
                                         Accessibilite.valueOf(r.getInt("accessibilite")),
-                                        r.getString("nom_item"),
+                                        r.getString("nom"),
                                         r.getInt("cout_argent"),
                                         r.getInt("degats") + personnage.getNiveau() * 2,
                                         r.getInt("nb_munitions")

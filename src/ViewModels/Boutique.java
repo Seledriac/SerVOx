@@ -7,7 +7,10 @@ import Models.classes.Guerrier;
 import Models.classes.Mage;
 import Models.classes.Personnage;
 import Models.classes.TypePerso;
+import Models.items.Arme;
+import Models.items.Bouclier;
 import Models.items.Item;
+import Models.items.SortOffensif;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -49,6 +52,7 @@ public class Boutique implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         joueur = Main.gameManager.getPersonnage();
+        argent_perso.setText("Argent : " + joueur.getArgent() + "€");
         items = ItemsDBHandler.listItems();
         for(Item item : joueur.getItems()) {
             items.removeIf(item1 -> item.getNom().equals(item1.getNom()));
@@ -66,7 +70,9 @@ public class Boutique implements Initializable {
     protected void achat(MouseEvent mouseEvent) {
         if(joueur.acheter(items.get(i))) {
             items.removeIf(item -> item.getNom().equals(items.get(i).getNom()));
+            PersonnagesDBHandler.updatePersonnage(joueur);
         }
+        next(null);
         argent_perso.setText("Argent : " + joueur.getArgent() + "€");
     }
 
@@ -76,6 +82,10 @@ public class Boutique implements Initializable {
         nom_item.setText(item.getNom());
         type_item.setText(item.getClass().getSimpleName());
         cout_item.setText("Coût : " + item.getCout_argent());
+        if(item.getCout_argent() > joueur.getArgent())
+            btn_acheter.setDisable(true);
+        else
+            btn_acheter.setDisable(false);
     }
 
     @FXML

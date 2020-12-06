@@ -9,24 +9,24 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewModels.BoutiqueArmes">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewModels.Boutique">
     <children>
         <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../Images/fond_boutique_armes.jpg" />
+                <Image url="@../Images/fond_boutique.jpg" />
             </image>
         </ImageView>
-        <ImageView fx:id="image_arme" fitHeight="400.0" fitWidth="400.0" layoutX="290.0" layoutY="216.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="image_item" fitHeight="400.0" fitWidth="400.0" layoutX="290.0" layoutY="216.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../Images/mjolnir.jpg" />
+                <Image url="@../Images/Mjöllnir.jpg" />
             </image>
         </ImageView>
-        <Text fx:id="nom_arme" fill="#e4e4e4" layoutX="786.0" layoutY="293.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.0" text="Mjölnir">
+        <Text fx:id="nom_item" fill="#e4e4e4" layoutX="786.0" layoutY="293.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.0" text="Mjölnir">
             <font>
                 <Font name="Berlin Sans FB" size="50.0" />
             </font>
         </Text>
-        <Text fx:id="cout_arme" fill="#ffffffe5" layoutX="742.0" layoutY="432.0" stroke="#1b1b1b" strokeType="OUTSIDE" text="Coût : 500 €">
+        <Text fx:id="cout_item" fill="#ffffffe5" layoutX="762.0" layoutY="432.0" stroke="#1b1b1b" strokeType="OUTSIDE" text="Coût : 500 €">
             <font>
                 <Font name="Berlin Sans FB" size="45.0" />
             </font>
@@ -64,7 +64,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Text fx:id="type_arme" fill="#ff9900" layoutX="784.0" layoutY="351.0" stroke="BLACK" strokeType="OUTSIDE" text="Marteau">
+        <Text fx:id="type_item" fill="#ff9900" layoutX="784.0" layoutY="351.0" stroke="BLACK" strokeType="OUTSIDE" text="Marteau">
             <font>
                 <Font name="Berlin Sans FB" size="40.0" />
             </font>
@@ -80,7 +80,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Text fx:id="titre" fill="WHITE" layoutX="436.0" layoutY="127.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="3.0" text="Boutique d'Armes">
+        <Text fx:id="titre" fill="WHITE" layoutX="535.0" layoutY="127.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="3.0" text="Boutique">
             <font>
                 <Font name="Berlin Sans FB" size="55.0" />
             </font>

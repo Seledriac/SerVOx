@@ -46,7 +46,7 @@
                <Cursor fx:constant="HAND" />
            </cursor>
        </Button>
-      <Button layoutX="552.0" layoutY="392.0" mnemonicParsing="false" onMouseClicked="#loadBoutiqueArmes" text="Boutique d'armes">
+      <Button layoutX="587.0" layoutY="393.0" mnemonicParsing="false" onMouseClicked="#loadBoutique" text="Boutique">
          <effect>
             <ColorAdjust brightness="-0.1" contrast="0.1" hue="0.45" saturation="0.4" />
          </effect>
@@ -57,7 +57,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="554.0" layoutY="443.0" mnemonicParsing="false" onMouseClicked="#loadBoutiqueSorts" text="Boutique de sorts">
+      <Button layoutX="584.0" layoutY="444.0" mnemonicParsing="false" onMouseClicked="#loadInventaire" text="Inventaire">
          <font>
             <Font name="Berlin Sans FB" size="20.0" />
          </font>

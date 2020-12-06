@@ -26,7 +26,7 @@
                 <Font name="Berlin Sans FB" size="50.0" />
             </font>
         </Text>
-        <Text fx:id="cout_item" fill="#ffffffe5" layoutX="742.0" layoutY="432.0" stroke="#1b1b1b" strokeType="OUTSIDE" text="Coût : 500 €">
+        <Text fx:id="cout_item" fill="#ffffffe5" layoutX="762.0" layoutY="432.0" stroke="#1b1b1b" strokeType="OUTSIDE" text="Coût : 500 €">
             <font>
                 <Font name="Berlin Sans FB" size="45.0" />
             </font>
@@ -80,7 +80,7 @@
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Text fx:id="titre" fill="WHITE" layoutX="436.0" layoutY="127.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="3.0" text="Boutique">
+        <Text fx:id="titre" fill="WHITE" layoutX="535.0" layoutY="127.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="3.0" text="Boutique">
             <font>
                 <Font name="Berlin Sans FB" size="55.0" />
             </font>
