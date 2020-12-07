@@ -92,4 +92,16 @@ public class Guerrier extends Personnage implements Serializable {
         }
     }
 
+    @Override
+    public String toString() {
+        String arme_eq = "";
+        String bouclier_eq = "";
+        if(arme_equipee != null)
+            arme_eq = "; Arme équipée :" + arme_equipee.toString();
+        if(arme_equipee != null)
+            bouclier_eq = "; Bouclier équipé :" + arme_equipee.toString();
+        return super.toString() + arme_eq + bouclier_eq;
+    }
+
+
 }

@@ -12,5 +12,10 @@ public class Arbalete extends ArmeAMunitions implements Serializable {
     public Arbalete(Arbalete arbalete) throws CreationException {
         super(arbalete.accessibilite, arbalete.nom, arbalete.cout_argent, arbalete.degats, arbalete.munitions_max);
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + "; Type : Arbalète";
+    }
     
 }
